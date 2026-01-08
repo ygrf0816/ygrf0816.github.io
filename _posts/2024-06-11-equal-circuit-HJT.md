@@ -11,17 +11,17 @@ mathjax: true
 
 整体架构：
 
-<img src="\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240611203252791.png" alt="image-20240611203252791" style="zoom: 67%;" />
+<img src="/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240611203252791.png" alt="image-20240611203252791" style="zoom: 67%;" />
 
 ## 创新点：
 
 1. SHJ，DFHJ(dopant-free heterojunctions)电池，薄膜硅电池以及钙钛矿太阳能电池有时会存在<u>具有S型特征的IV曲线（the S-type character of the I-V curve）</u>，即IV曲线在最大功率点的地方发生弯曲，而且暗电流和光生电流的IV曲线存在差异（discrepancies），传统的单二极管电阻和多二极管电阻的等效模型无法体现。作者对SHJ电池相关的隧穿复合模型进行考虑（$D_{p,TE,1}$，$R_T$），改进了多二极管电阻等效模型（7参数等效模型）。
 
-   <img src="\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240611202330191.png" alt="image-20240611202330191" style="zoom:67%;" />
+   <img src="/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240611202330191.png" alt="image-20240611202330191" style="zoom:67%;" />
 
 2. 求解二极管电阻模型参数的方法通常是外推法（extrapolation method）或直接求解，但这种方法还是较为费时，作者设计了一种1d-conv+MLPs的混合模型，选择实验数据和计算数据建立数据集，以iv曲线上数据点为输入，八参数为预测输出。有较好的回归精度（有些表现不算好，但计算出iv曲线效果很好）
 
-![image-20240612162647026](\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240612162647026.png)
+![image-20240612162647026](/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240612162647026.png)
 
 ## 具体内容：
 
@@ -29,11 +29,11 @@ mathjax: true
 
 对样品进行不同温度的退火实验，获取了不同退火温度下的S型畸变IV曲线（图2）。作者提出高温退火导致电池后部的氧化层界面势垒增高，阻止载流子传输。
 
-<img src="\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240612162828340.png" alt="image-20240612162828340" style="zoom:67%;" />
+<img src="/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240612162828340.png" alt="image-20240612162828340" style="zoom:67%;" />
 
 <center><p><font color='gray'>图1：DFSJ电池结构</font></p></center>
 
-![image-20240612164352403](\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240612164352403.png)
+![image-20240612164352403](/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240612164352403.png)
 
 <center><p><font color='gray'>图2：B是暗电流图像，C是光生IV</font></p></center>
 
@@ -57,13 +57,13 @@ Q.为什么要做高温退火:
 
 hTE的二极管示意图是不是有问题呢？
 
-<img src="\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240612165058332.png" alt="image-20240612165058332" style="zoom: 50%;" />
+<img src="/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240612165058332.png" alt="image-20240612165058332" style="zoom: 50%;" />
 
-![image-20240612165826801](\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240612165826801.png)
+![image-20240612165826801](/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240612165826801.png)
 
 <center><p><font color='gray'>图3：A.DFSJ能带 B.SHJ能带</font></p></center>
 
-<img src="\assets/posts_figs/2024-06-11-equal-circuit-HJT\image-20240612165854289.png" alt="image-20240612165854289" style="zoom:67%;" />
+<img src="/assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240612165854289.png" alt="image-20240612165854289" style="zoom:67%;" />
 
 <center><p><font color='gray'>图4：模型示例（二极管代表单向导通性，电阻代表隧穿质量）</font></p></center>
 
@@ -212,9 +212,3 @@ $V_{th}=kT/q$，为热电压，q, k,andT are the elementary charge con stant, Bo
 self-attention block可以提取数据之间以及数据本身的信息
 
 残差块结构可以保留原始数据特征，就不用额外的mlp结构了
-
-## 英文学习：
-
-**lump** *v.* 结成块;把…归并在一起（考虑），将人[物]同等对待[分类]; 集总
-**discrepancy** *noun.* 不一致，出入 介词搭配between和in
-**equilibrium** *noun.* 平衡；（心情）平静
