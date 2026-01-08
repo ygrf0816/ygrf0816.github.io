@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Tech
-permalink: /Tech/
+title: Project
+permalink: /Project/
 ---
 
-{% for post in site.categories.Tech %}
+{% for post in site.categories.Project %}
    [{{ post.title }}]({{ post.url }})
   *发表于 {{ post.date | date: "%Y-%m-%d" }}*
 {% endfor %}

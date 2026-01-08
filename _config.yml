@@ -15,5 +15,5 @@ plugins:
 header_pages:
   - about.md
   - layout_learning.md
-  - layout_tech.md
+  - layout_project.md
   - layout_reading.md
