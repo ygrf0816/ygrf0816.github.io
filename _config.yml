@@ -1,0 +1,19 @@
+title: CHZhang's Blog
+email: sudazhangchenhui@163.com
+description: >- # this means to ignore newlines until "baseurl:"
+  这是我的个人博客内容，用于更新自己的学习感悟，思考结果；欢迎访问交流！
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://ygrf0816.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: ygrf0816
+github_username:  ygrf0816
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+
+header_pages:
+  - about.md
+  - layout_learning.md
+  - layout_tech.md
+  - layout_reading.md
