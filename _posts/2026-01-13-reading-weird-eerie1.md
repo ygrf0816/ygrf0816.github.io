@@ -10,7 +10,7 @@ mathjax: true
 
 # ——《怪异与阴森》 怪异篇读后感
 
-<img src="E:\workspace\mygithubpage\assets\posts_figs\2026-01-13-reading-weird-eerie1\s34955759.jpg" alt="s34955759" style="zoom: 33%;" />
+<img src="\assets\posts_figs\2026-01-13-reading-weird-eerie1\s34955759.jpg" alt="s34955759" style="zoom: 33%;" />
 
 <center><p><font color='gray'>封面镇楼</font></p></center>
 

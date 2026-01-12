@@ -14,15 +14,15 @@ mathjax: true
 使用的基础软件：
 ### Xshell 和 Xftp
 
-![image-20260112203704873](E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112203704873.png)
+![image-20260112203704873](\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112203704873.png)
 
 <center><p><font color='gray'>图1：Xshell设置方法，红圈内的名称随便填，主机号改为工作站当前的ip账号，协议和端口号改成一样的</font></p></center>
 
-![image-20260112203845580](E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112203845580.png)
+![image-20260112203845580](\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112203845580.png)
 
 <center><p><font color='gray'>图2：Xshell设置方法，把用户名和密码改成管理员给你分配的用户名和密码，即可登录</font></p></center>
 
-![image-20260112203916335](E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112203916335.png)
+![image-20260112203916335](\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112203916335.png)
 
 <center><p><font color='gray'>图3：xftp设置方法，设置内容同xshell</font></p></center>
 
@@ -32,11 +32,11 @@ mathjax: true
 
 Ubuntu 22.02自带了VNC链接方法，VNC链接不需要设备连接外网，只需要两个设备都处于同一局域网环境下（比如都连接了校园网WiFi）即可链接，相对应的就是速度会很慢，只需在工作站“设置”-“分享”中打开远程桌面选项即可：
 
-![img](E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image002.png)
+![img](\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image002.png)
 
 然后勾选上如下选项，设置账号密码即可：
 
-![image-20260112204509955](E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112204509955.png)
+![image-20260112204509955](\assets\posts_figs\2026-01-12-how2-remote-connect-ws\image-20260112204509955.png)
 
 上述流程做完了之后，还需要安装一些依赖库。这里介绍的方法都是在Ubuntu 24.04上设置的，在20，22版本的ubuntu上的设置方法类似。这里通过xrdp进行连接。
 
@@ -73,14 +73,14 @@ sudo ufw allow 3389/tcp
 
 这里演示使用Windows自带的远程桌面链接方法进行链接：
 
-<img src="E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image002-1768221713424-4.png" alt="img" style="zoom:50%;" />
+<img src="\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image002-1768221713424-4.png" alt="img" style="zoom:50%;" />
 
 打开后在显示的窗口中输入服务器ip地址，点击连接：
- <img src="E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image004.png" alt="img" style="zoom:50%;" style="text-align: center;" />
+ <img src="\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image004.png" alt="img" style="zoom:50%;" style="text-align: center;" />
 
 显示如下登录窗口，输入在服务器上的账号密码，点击OK即可远程登陆（这个登录方式用的是linux的xrdp工具）:
 
-<img src="E:\workspace\mygithubpage\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image005.png" alt="img" style="zoom:50%;" />
+<img src="\assets\posts_figs\2026-01-12-how2-remote-connect-ws\clip_image005.png" alt="img" style="zoom:50%;" />
 
 ------
 
