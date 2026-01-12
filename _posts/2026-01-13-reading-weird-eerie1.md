@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[读书笔记] 《怪异与阴森》 （1）怪异篇"
-date: 2026-01-13 21:14:00 +0800
+date: 2026-01-12 21:14:00 +0800
 categories: Reading
 mathjax: true
 ---
