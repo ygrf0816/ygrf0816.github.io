@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[技术] 如何利用ssh和xrdp插件与工作站进行远程连接"
-date: 2024-07-16 17:43:33 +0800
+date: 2026-01-12 21:11:00 +0800
 categories: Learning
 mathjax: true
 ---
