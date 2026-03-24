@@ -40,11 +40,11 @@ $$\tan\Psi \cdot e^{i\Delta} = \frac{r_p(n, \kappa, d)}{r_s(n, \kappa, d)}$$
 
 5. **前人 ANN 方法的不足**：之前有研究（Urban & Tabet, 1994）用人工神经网络（ANN）预处理初始猜测值，但该方法只允许单次前向传播，没有"闭环反馈"和自动调整机制，存在因初始猜测不好而拟合失败的风险。
 
-![image-20260324134814037](E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324134814037.png)
+![image-20260324134814037](/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324134814037.png)
 
 图一：对椭偏仪的求解原理与逆问题求解的困难性进行直观阐述。椭偏仪根据薄膜对不同偏振与入射角度光的不同响应，实现对材料nk值的反演
 
-![image-20260324135956687](E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324135956687.png)
+![image-20260324135956687](/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324135956687.png)
 
 Fig S1.在固定$\Psi$和$\Delta$的情况下，根据厚度d不同，其可能存在对应多组nk组合的情况
 
@@ -90,7 +90,7 @@ $$
 
 - $\gamma \in [0, 1]$：两项之间的权重平衡系数，实验中取 $\gamma = 0.5$
 
-  <img src="E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324141234353.png" alt="image-20260324141234353" style="zoom:50%;" />
+  <img src="/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324141234353.png" alt="image-20260324141234353" style="zoom:50%;" />
 
   其中F和G指上述两个公式，$\|·\|_2$对应欧几里得范数（MSE）
 
@@ -113,7 +113,7 @@ $$
 
 ### 4.1 总体架构：双模块闭环
 
-![image-20260324141940432](E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324141940432.png)
+![image-20260324141940432](/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324141940432.png)
 
 SUNDIAL 包含两大神经网络模块，构成闭合迭代循环，结构如上图所示，其大概的训练流程可以总结如下：
 
@@ -129,7 +129,7 @@ SUNDIAL 包含两大神经网络模块，构成闭合迭代循环，结构如上
 
 详细的公式与迭代训练过程如下所示：
 
-![image-20260324143154313](E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324143154313.png)
+![image-20260324143154313](/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324143154313.png)
 
 ### 4.2 Algorithm 1 详解
 
@@ -179,7 +179,7 @@ $$n^*, \kappa^*, d^* = \frac{F^{-1}_{\Theta^*_{I,\Psi\Delta}}(\Psi, \Delta) + F^
 
 每个网络均采用**堆叠残差 U 模块（Stacked Residual U-modules）**作为 backbone，这是论文专门为此任务设计的架构：
 
-![image-20260324144006091](E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324144006091.png)
+![image-20260324144006091](/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324144006091.png)
 
 ### **训练超参数**：
 
@@ -207,13 +207,13 @@ $$n^*, \kappa^*, d^* = \frac{F^{-1}_{\Theta^*_{I,\Psi\Delta}}(\Psi, \Delta) + F^
 
 ### 5.1 三种典型材料结果（Au、TiO₂、Si）
 
-![image-20260324145009612](E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324145009612.png)
+![image-20260324145009612](/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324145009612.png)
 
 论文中 Fig. 3 展示了对金（Au）、二氧化钛（TiO₂）、硅（Si）的完整反演结果。SUNDIAL 输出的 $(n, \kappa)$ 色散曲线和厚度 $d$，通过正函数重建的 $(\Psi, \Delta, R, T)$ 与实测数据高度吻合（实线与空心圆几乎重合）。
 
 ### 5.2 与传统拟合方法的性能对比
 
-![image-20260324145045117](E:\workspace\mygithubpage\assets\posts_figs\2026-03-24-paper-reading-ML-ellipsometry\image-20260324145045117.png)
+![image-20260324145045117](/assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324145045117.png)
 
 使用残差 $\delta_S = S_\text{cal} - S_\text{exp}$ 和 RMSE 定量比较：
 
