@@ -253,9 +253,7 @@ GADF 主对角线恒为 0，因此**无法单独从 GADF 恢复原始序列**。
 
 再按数据点的时间顺序展开为二维图。
 
-这里如果还是不理解什么叫马尔科夫，这里强烈推荐观看真理元素的
-
-[这期节目]: https://www.bilibili.com/video/BV1Aj8DzzE42/?spm_id_from=333.337.search-card.all.click&amp;vd_source=8b6ffc174a6c5a4993bab3a38f1b70f7	"这个数学模型（几乎）能预测宇宙万物"
+这里如果还是不理解什么叫马尔科夫过程，这里强烈推荐观看真理元素的这期节目:"这个数学模型（几乎）能预测宇宙万物" https://www.bilibili.com/video/BV1Aj8DzzE42/?spm_id_from=333.337.search-card.all.click&amp;vd_source=8b6ffc174a6c5a4993bab3a38f1b70f7	
 
 很好的讲了马尔科夫链，核弹与蒙特卡洛算法
 
@@ -410,7 +408,7 @@ CWT **原则上可逆**（存在解析的逆小波变换公式），但需要保
 
 ### 4.6 对称点模式（Symmetric Dot Pattern, SDP）
 
-![对称点模式(symmetric dot pattern, SDP)-matlab版复现_故障诊断](assets\posts_figs\2026-03-30-project-1D-to-2D-encoding\20125219_649130838846d22794.png)
+![对称点模式(symmetric dot pattern, SDP)-matlab版复现_故障诊断](/assets/posts_figs/2026-03-30-project-1D-to-2D-encoding/20125219_649130838846d22794.png)
 
 #### 核心思想
 
@@ -703,5 +701,4 @@ rp_img = rp.fit_transform(X)
 8. *A Novel Method for Rolling Bearing Fault Diagnosis Based on Gramian Angular Field and Few-shot Learning.* Sensors, 24(12), 2024. DOI: 10.3390/s24123967
 
 9. *Rolling bearing fault diagnosis method based on gramian angular difference field and deep neural network under strong noise interference.* PLOS ONE, 2024. DOI: 10.1371/journal.pone.0314898
-
 
