@@ -62,7 +62,7 @@ mathjax: true
 
 ## 三、研究方法详解
 
-![image-20260411134458616](/assets/posts_figs/2026-04-21-paper-ML-phase-change-sphare-structure/image-20260411134458616.png)
+![image-20260411134458616](/assets/posts_figs/2026-04-11-paper-ML-Conway-patterns/image-20260411134458616.png)
 
 ### 3.1 超表面模型结构
 
@@ -103,7 +103,7 @@ mathjax: true
 
 本文构建了三类描述符的综合体系（图 2）：
 
-![image-20260411134607564](/assets/posts_figs/2026-04-21-paper-ML-phase-change-sphare-structure/image-20260411134607564.png)
+![image-20260411134607564](/assets/posts_figs/2026-04-11-paper-ML-Conway-patterns/image-20260411134607564.png)
 
 #### (a) 材料描述符
 - 71 种候选材料的复折射率 $n = n_r + ik$
@@ -164,7 +164,7 @@ Conway 图案因像素化带来**锐利边缘** → 引入寄生共振模式，�
 
 ## 四、主要结果
 
-![image-20260411144524012](/assets/posts_figs/2026-04-21-paper-ML-phase-change-sphare-structure/image-20260411144524012.png)
+![image-20260411144524012](/assets/posts_figs/2026-04-11-paper-ML-Conway-patterns/image-20260411144524012.png)
 
 ### 4.1 正向预测模型性能
 
@@ -185,7 +185,7 @@ Conway 图案因像素化带来**锐利边缘** → 引入寄生共振模式，�
 
 ### 4.3 电场分析（图 4）
 
-![image-20260411144623613](/assets/posts_figs/2026-04-21-paper-ML-phase-change-sphare-structure/image-20260411144623613.png)
+![image-20260411144623613](/assets/posts_figs/2026-04-11-paper-ML-Conway-patterns/image-20260411144623613.png)
 
 以蝴蝶形模型为例：
 
