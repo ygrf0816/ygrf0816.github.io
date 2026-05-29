@@ -1,0 +1,42 @@
+<svg role="img" viewBox="0 0 680 380" width="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <title>域偏移与域适应概念</title>
+  <desc>左侧源域有大量标记数据，右侧目标域分布不同且几乎没有标记数据</desc>
+
+  <text class="th" x="340" y="28" text-anchor="middle" dominant-baseline="central" fill="var(--color-text-primary)">域偏移（Domain Shift）问题</text>
+  <text class="ts" x="340" y="48" text-anchor="middle" dominant-baseline="central" fill="var(--color-text-secondary)">为什么训练好的模型换个场景就失效？</text>
+
+  <rect x="30" y="70" width="290" height="160" rx="16" fill="var(--color-background-secondary)" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="th" x="175" y="94" text-anchor="middle" fill="var(--color-text-primary)">源域（Source Domain）</text>
+  <text class="ts" x="175" y="112" text-anchor="middle" fill="var(--color-text-secondary)">训练场景 · 大量标记数据</text>
+
+  <rect x="48" y="130" width="72" height="36" rx="6" fill="#EEEDFE" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="ts" x="84" y="148" text-anchor="middle" dominant-baseline="central" fill="#534AB7">结构A</text>
+  <rect x="136" y="130" width="72" height="36" rx="6" fill="#EEEDFE" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="ts" x="172" y="148" text-anchor="middle" dominant-baseline="central" fill="#534AB7">光谱A'</text>
+  <text class="ts" x="172" y="180" text-anchor="middle" fill="var(--color-text-tertiary)">一对一的</text>
+  <text class="ts" x="172" y="196" text-anchor="middle" fill="var(--color-text-tertiary)">标记映射</text>
+  <path d="M120 148 L136 148" stroke="#534AB7" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <rect x="360" y="70" width="290" height="160" rx="16" fill="#FAECE7" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="th" x="505" y="94" text-anchor="middle" fill="var(--color-text-primary)">目标域（Target Domain）</text>
+  <text class="ts" x="505" y="112" text-anchor="middle" fill="var(--color-text-secondary)">新场景 · 极少或无标记数据</text>
+
+  <rect x="385" y="130" width="72" height="36" rx="6" fill="#F5C4B3" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="ts" x="421" y="148" text-anchor="middle" dominant-baseline="central" fill="#993C1D">结构B</text>
+  <rect x="490" y="130" width="72" height="36" rx="6" fill="#F5C4B3" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="ts" x="526" y="148" text-anchor="middle" dominant-baseline="central" fill="#993C1D">光谱B'</text>
+  <text class="ts" x="531" y="178" text-anchor="middle" fill="var(--color-text-tertiary)">二者之间</text>
+  <text class="ts" x="531" y="194" text-anchor="middle" fill="var(--color-text-tertiary)">未知映射</text>
+  <path d="M457 148 L490 148" stroke="#D85A30" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+
+  <text class="ts" x="340" y="260" text-anchor="middle" fill="var(--color-text-secondary)">▸ 结构形状可能不同（H形 vs 圆柱）</text>
+  <text class="ts" x="340" y="280" text-anchor="middle" fill="var(--color-text-secondary)">▸ 材料属性可能不同（介电常数变了）</text>
+  <text class="ts" x="340" y="300" text-anchor="middle" fill="var(--color-text-secondary)">▸ 工作频率可能不同（红外 → 太赫兹）</text>
+
+  <text class="th" x="340" y="348" text-anchor="middle" fill="#534AB7">核心矛盾：训练数据和测试数据不是同一个分布</text>
+</svg>

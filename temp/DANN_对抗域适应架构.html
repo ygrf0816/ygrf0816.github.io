@@ -1,0 +1,47 @@
+<svg role="img" viewBox="0 0 680 420" width="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <title>DANN 对抗域适应架构</title>
+  <desc>特征提取器共享，上方分支做参数预测，下方分支通过GRL做域分类，对抗训练迫使特征提取器产生域不变特征</desc>
+
+  <text class="th" x="340" y="26" text-anchor="middle" fill="var(--color-text-primary)">DANN：Domain-Adversarial Neural Network</text>
+  <text class="ts" x="340" y="46" text-anchor="middle" fill="var(--color-text-secondary)">核心思想：迫使特征提取器产生"域不变"的通用表示</text>
+
+  <rect x="205" y="68" width="200" height="110" rx="12" fill="#EEEDFE" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="th" x="305" y="92" text-anchor="middle" fill="#534AB7">特征提取器 G_f</text>
+  <text class="ts" x="305" y="112" text-anchor="middle" fill="var(--color-text-secondary)">共享网络层</text>
+  <text class="ts" x="305" y="132" text-anchor="middle" fill="var(--color-text-secondary)">源域 + 目标域样本都经过它</text>
+  <text class="ts" x="305" y="152" text-anchor="middle" fill="var(--color-text-secondary)">输出：域无关的潜在特征 z</text>
+
+  <rect x="60" y="220" width="36" height="24" rx="4" fill="#B5D4F4" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="ts" x="78" y="232" text-anchor="middle" dominant-baseline="central" fill="#185FA5">源</text>
+  <rect x="120" y="220" width="36" height="24" rx="4" fill="#F5C4B3" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="ts" x="138" y="232" text-anchor="middle" dominant-baseline="central" fill="#993C1D">目</text>
+  <path d="M240 178 L240 200 L78 200 L78 220" stroke="var(--color-border-primary)" stroke-width="0.5" fill="none"/>
+  <path d="M290 178 L290 200 L138 200 L138 220" stroke="var(--color-border-primary)" stroke-width="0.5" fill="none"/>
+  <text class="ts" x="305" y="200" text-anchor="middle" fill="var(--color-text-tertiary)">同一批样本，不同标签</text>
+
+  <rect x="60" y="270" width="180" height="56" rx="8" fill="#E1F5EE" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="th" x="150" y="292" text-anchor="middle" dominant-baseline="central" fill="#0F6E56">标签预测器 G_y</text>
+  <text class="ts" x="150" y="312" text-anchor="middle" dominant-baseline="central" fill="var(--color-text-secondary)">预测结构参数 / 光谱</text>
+  <path d="M305 178 L240 200 L150 200 L150 270" stroke="var(--color-border-primary)" stroke-width="0.5" fill="none"/>
+
+  <rect x="310" y="270" width="180" height="56" rx="8" fill="#FFB3B3" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="th" x="400" y="292" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">域分类器 D</text>
+  <text class="ts" x="400" y="312" text-anchor="middle" dominant-baseline="central" fill="var(--color-text-secondary)">判断样本来自哪个域</text>
+  <path d="M405 178 L405 245 L400 245 L400 270" stroke="var(--color-border-primary)" stroke-width="0.5" fill="none"/>
+
+  <rect x="518" y="285" width="130" height="30" rx="15" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1"/>
+  <text class="ts" x="583" y="300" text-anchor="middle" dominant-baseline="central" fill="#A32D2D">域标签: 源/目标</text>
+
+  <rect x="310" y="355" width="310" height="50" rx="10" fill="#FFF3CD" stroke="#BA7517" stroke-width="0.5"/>
+  <text class="th" x="465" y="375" text-anchor="middle" fill="#854F0B">梯度反转层 GRL：正向传播 = 恒等</text>
+  <text class="ts" x="465" y="395" text-anchor="middle" fill="#854F0B">反向传播 = ×(−λ) ，梯度乘以负数反转方向</text>
+
+  <text class="ts" x="60" y="360" fill="var(--color-text-secondary)">源域样本：</text>
+  <text class="ts" x="60" y="378" fill="var(--color-text-secondary)">G_y 正常优化（有标签）</text>
+  <text class="ts" x="60" y="396" fill="var(--color-text-secondary)">D 被训练去分清源/目标</text>
+</svg>

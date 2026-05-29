@@ -6,9 +6,6 @@ categories: Learning
 mathjax: true
 ---
 
-# [论文阅读] 深度学习驱动的多波长不可见-超散射相变调控材料
-
----
 
 > - **标题**：Deep-learning-enabled inverse engineering of multi-wavelength invisibility-to-superscattering switching with phase-change materials
 > - **期刊**：Optics Express（Optical Society of America），2021，29(7)，10527–10537

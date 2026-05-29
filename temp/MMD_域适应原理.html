@@ -1,0 +1,44 @@
+<svg role="img" viewBox="0 0 680 330" width="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <title>MMD 域适应原理</title>
+  <desc>左：源域特征分布在高维空间，右：目标域特征分布，MMD度量两分布差距并通过最小化差距实现域对齐</desc>
+
+  <text class="th" x="340" y="24" text-anchor="middle" fill="var(--color-text-primary)">MMD：Maximum Mean Discrepancy（最大均值差异）</text>
+  <text class="ts" x="340" y="42" text-anchor="middle" fill="var(--color-text-secondary)">直接度量两个分布在再生核希尔伯特空间（RKHS）中的距离</text>
+
+  <rect x="30" y="60" width="600" height="120" rx="12" fill="var(--color-background-secondary)" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+
+  <ellipse cx="160" cy="120" rx="70" ry="40" fill="#B5D4F4" stroke="#378ADD" stroke-width="0.5" opacity="0.6"/>
+  <text class="th" x="160" y="96" text-anchor="middle" fill="#185FA5">源域特征分布</text>
+  <circle cx="135" cy="125" r="4" fill="#378ADD"/>
+  <circle cx="155" cy="115" r="3" fill="#378ADD"/>
+  <circle cx="175" cy="130" r="3.5" fill="#378ADD"/>
+  <circle cx="145" cy="140" r="3" fill="#378ADD"/>
+  <circle cx="165" cy="105" r="3" fill="#378ADD"/>
+  <circle cx="185" cy="120" r="3.5" fill="#378ADD"/>
+
+  <ellipse cx="480" cy="120" rx="70" ry="45" fill="#F5C4B3" stroke="#D85A30" stroke-width="0.5" opacity="0.6"/>
+  <text class="th" x="480" y="88" text-anchor="middle" fill="#993C1D">目标域特征分布</text>
+  <circle cx="455" cy="120" r="4" fill="#D85A30"/>
+  <circle cx="475" cy="110" r="3.5" fill="#D85A30"/>
+  <circle cx="495" cy="130" r="3" fill="#D85A30"/>
+  <circle cx="465" cy="140" r="3.5" fill="#D85A30"/>
+  <circle cx="500" cy="115" r="3" fill="#D85A30"/>
+  <circle cx="485" cy="105" r="3" fill="#D85A30"/>
+
+  <path d="M310 100 L340 100" stroke="#A32D2D" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow)"/>
+  <path d="M310 140 L340 140" stroke="#A32D2D" stroke-width="2" stroke-dasharray="6,3" marker-end="url(#arrow)"/>
+  <text class="ts" x="325" y="90" text-anchor="middle" fill="#A32D2D">MMD</text>
+  <text class="ts" x="325" y="162" text-anchor="middle" fill="#A32D2D">距离</text>
+
+  <text class="th" x="340" y="208" text-anchor="middle" fill="var(--color-text-primary)">数学公式</text>
+  <rect x="80" y="222" width="520" height="56" rx="10" fill="#FAEDB5" stroke="var(--color-border-primary)" stroke-width="0.5"/>
+  <text class="ts" x="340" y="244" text-anchor="middle" fill="var(--color-text-primary)">MMD² = ‖ 1/m Σᵢ φ(xᵢˢ) − 1/n Σⱼ φ(xⱼᵗ) ‖²</text>
+  <text class="ts" x="340" y="266" text-anchor="middle" fill="var(--color-text-secondary)">源域特征均值                目标域特征均值          在RKHS空间中的距离</text>
+
+  <text class="th" x="340" y="308" text-anchor="middle" fill="#0F6E56">DANN 用对抗博弈对齐分布 · MMD 直接用统计量对齐分布</text>
+</svg>
