@@ -1,0 +1,69 @@
+---
+# 全站索引：由 Liquid 在构建时生成（勿手改，构建会重新生成）
+# 结构见 _plan/CONTRACT.md §4.2；消费方：/assets/js/search.js、/assets/js/graph.js
+#
+# B 代理尚未把 type/tags/keywords/summary/series 写进 _posts 的 front matter，
+# 这里从 _plan/taxa/b{1,2,3,5}.json 按文件名（basename 去扩展名）补全；
+# front matter 已有同名键时优先取 front matter，B 落盘后本文件无需改动。
+#
+# tag.count 由构建后的 _plan/patch_tag_counts.rb 填入（Liquid 单遍无法跨记录计数），
+# 流水线：bundle exec jekyll build && ruby _plan/patch_tag_counts.rb
+---
+{
+"generated": "{{ site.time | date: '%Y-%m-%d' }}",
+"posts": [
+{%- for post in site.posts -%}
+{%- assign base = post.path | split: '/' | last -%}
+{%- assign base = base | remove: '.md' | remove: '.markdown' -%}
+{%- comment -%} 在 _plan/taxa 全部批次中查找该文章的标注（B 的 dry-run 输出） {%- endcomment -%}
+{%- assign a = null -%}
+{%- for rec in site.data.taxa.b1.posts -%}{% if rec.file == base %}{% assign a = rec %}{% endif %}{% endfor -%}
+{%- for rec in site.data.taxa.b2.posts -%}{% if rec.file == base %}{% assign a = rec %}{% endif %}{% endfor -%}
+{%- for rec in site.data.taxa.b3.posts -%}{% if rec.file == base %}{% assign a = rec %}{% endif %}{% endfor -%}
+{%- for rec in site.data.taxa.b5.posts -%}{% if rec.file == base %}{% assign a = rec %}{% endif %}{% endfor -%}
+{%- comment -%} 字段优先级：front matter > B 标注 {%- endcomment -%}
+{%- assign ttype  = post.type | default: a.type | default: '随笔' -%}
+{%- assign ttags  = post.tags | default: a.tags | default: '' -%}
+{%- assign tkeys  = post.keywords | default: a.keywords | default: '' -%}
+{%- assign tsum   = post.summary | default: a.summary | default: '' -%}
+{%- assign tser   = post.series | default: a.series | default: '' -%}
+{%- assign torder = post.series_order | default: a.series_order | default: 0 -%}
+{%- assign ptext = post.content | strip_html | strip_newlines | replace: '  ', ' ' | truncate: 1200 -%}
+  {
+  "id": {{ post.id | split: '/' | last | remove: '.html' | jsonify }},
+  "title": {{ post.title | jsonify }},
+  "url": {{ post.url | jsonify }},
+  "date": "{{ post.date | date: '%Y-%m-%d' }}",
+  "ts": {{ post.date | date: '%s' }},
+  "cat": {{ post.categories | first | jsonify }},
+  "type": {{ ttype | jsonify }},
+  "tags": [
+    {%- for t in ttags -%}{{ t | jsonify }}{%- unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "keywords": [
+    {%- for k in tkeys -%}{{ k | jsonify }}{%- unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  "summary": {{ tsum | jsonify }},
+  "series": {{ tser | jsonify }},
+  "order": {{ torder | default: 0 }},
+  "text": {{ ptext | jsonify }}
+  }{%- unless forloop.last %},{% endunless %}
+{%- endfor -%}
+],
+"tags": [
+{%- for t in site.data.taxonomy -%}
+  {%- assign tag_count = 0 -%}
+  {%- for tp in site.posts -%}{%- if tp.tags contains t.name -%}{%- assign tag_count = tag_count | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  {
+  "name": {{ t.name | jsonify }},
+  "slug": {{ t.slug | jsonify }},
+  "count": {{ tag_count }},
+  "color": {{ t.color | jsonify }},
+  "short": {{ t.short | jsonify }},
+  "desc": {{ t.desc | jsonify }}
+  }{%- unless forloop.last %},{% endunless %}
+{%- endfor -%}
+]
+}

@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（01）：ZnMgO 薄膜光�
 date: 2026-04-07 19:07:11 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [ZnMgO, 无干涉条纹透射谱, 半导体薄膜]
+series: nk-inversion
+series_order: 1
+summary: "从不含干涉条纹的透射谱提取ZnMgO半导体薄膜光学常数，给出简化公式体系，解决干涉条件不满足时的测厚难题。"
+cover: /assets/posts_figs/nk-inversion-01-znmgo-transmittance/fig_p03_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（01）：ZnMgO 薄膜光学常数的透射谱测定方法

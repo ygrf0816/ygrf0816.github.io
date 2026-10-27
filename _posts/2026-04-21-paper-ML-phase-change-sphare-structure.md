@@ -4,6 +4,11 @@ title: "[论文阅读] 深度学习驱动的多波长不可见-超散射相变�
 date: 2026-04-21 18:52:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [相变材料, 机器学习设计, 超表面与超材料]
+keywords: [Mie散射, 超散射, 不可见, Tandem网络, OSA]
+summary: "用深度学习方法，以相变材料驱动纳米粒子不可见性与超散射的多波长切换，实现首次多波长相变切换与数据驱动逆向设计。"
+cover: /assets/posts_figs/2026-04-21-paper-ML-phase-change-sphare-structure/image-20260421184833461.png
 ---
 
 

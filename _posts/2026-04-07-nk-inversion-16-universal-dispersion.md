@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（16）：宽光谱通用�
 date: 2026-04-07 19:13:01 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [色散模型, 光学常数反演]
+keywords: [宽光谱色散, 通用模型, 振子模型, 参数化, 多材料统一]
+series: nk-inversion
+series_order: 16
+summary: "建立覆盖宽光谱、多材料的通用色散模型框架，统一不同薄膜的介电函数参数化与拟合。"
+cover: /assets/posts_figs/nk-inversion-16-universal-dispersion/fig_p01_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（16）：宽光谱通用色散模型（速览）

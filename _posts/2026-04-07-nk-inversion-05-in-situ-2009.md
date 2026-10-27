@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（05）：光学薄膜光�
 date: 2026-04-07 19:09:36 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征, 薄膜工艺]
+keywords: [原位测定, 沉积在线监测, 工艺反馈]
+series: nk-inversion
+series_order: 5
+summary: "在薄膜沉积过程中在线测定光学常数并实时反馈，替代离线测量以优化镀膜工艺控制。"
+cover: /assets/posts_figs/nk-inversion-05-in-situ-2009/fig_p03_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（05）：光学薄膜光学常数的原位测定方法（2009）

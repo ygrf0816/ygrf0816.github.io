@@ -3,3 +3,12 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+# 重构过程文件（契约、截图、备份脚本）
+_plan/
+
+
+# 本地备份 / 临时产物，不提交
+*.zip
+temp/
+

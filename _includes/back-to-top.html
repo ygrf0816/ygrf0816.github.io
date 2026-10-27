@@ -1,0 +1,7 @@
+{%- comment -%}
+  回到顶部按钮（代理 G1）：默认 hidden，theme.js 在滚动超过阈值时移除 hidden 并加 .is-visible；
+  点击平滑滚回顶部（prefers-reduced-motion 时降级为 auto）。
+{%- endcomment -%}
+<button id="back-to-top" class="back-to-top" type="button" aria-label="回到顶部" hidden>
+  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>
+</button>

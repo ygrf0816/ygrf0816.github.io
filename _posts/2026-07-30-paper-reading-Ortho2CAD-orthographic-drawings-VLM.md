@@ -4,6 +4,12 @@ title: "[论文阅读] Ortho2CAD：基于视觉语言模型的三视图到 3D CA
 date: 2026-07-30 11:39:23 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [CAD 生成, 机器学习设计]
+keywords: [三视图, SFT, Fusion 360, 强化学习]
+series: cad-generation
+series_order: 3
+summary: "用VLM从正交工程图生成可编辑参数化CAD，走监督微调与强化学习双路线，弥补栅格工程图无法脚本化访问的缺口。"
 ---
 
 # [论文阅读] Ortho2CAD：基于视觉语言模型的三视图到 3D CAD 生成

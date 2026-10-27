@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（14）：利用优化方�
 date: 2026-04-07 19:12:13 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光学仿真]
+keywords: [全局优化, 多层膜, 厚度和参数, 耦合参数, 光谱拟合]
+series: nk-inversion
+series_order: 14
+summary: "构建全局优化框架，从光谱数据同时反演多层膜各层厚度与光学参数，处理层间耦合与多局部最优。"
+cover: /assets/posts_figs/nk-inversion-14-optimization-multilayer/fig_p07_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（14）：利用优化方法估计多层薄膜厚度和光学参数

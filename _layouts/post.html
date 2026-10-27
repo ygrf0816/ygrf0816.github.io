@@ -1,27 +1,181 @@
 ---
 layout: default
 ---
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+{%- assign content_plain = content | strip_html -%}
+{%- assign word_count = content_plain | size -%}
+{%- assign read_minutes = word_count | divided_by: 350 -%}
+{%- if read_minutes < 1 -%}
+  {%- assign read_minutes = 1 -%}
+{%- endif -%}
 
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-      {%- endif -%}</p>
-  </header>
+<article class="post" itemscope itemtype="https://schema.org/Article">
+  <div class="post-layout">
+    <header class="post-header">
+      <div class="post-header-meta">
+        {%- if page.type -%}
+          <span class="badge badge-type">{{ page.type }}</span>
+        {%- endif -%}
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+          {{ page.date | date: "%Y-%m-%d" }}
+        </time>
+        <span class="post-meta-sep" aria-hidden="true">·</span>
+        <span>阅读约 {{ read_minutes }} 分钟</span>
+        <span class="post-meta-sep" aria-hidden="true">·</span>
+        <span>约 {{ word_count }} 字</span>
+        {%- if page.categories -%}
+          <span class="post-meta-sep" aria-hidden="true">·</span>
+          <span class="post-cat">
+            {%- assign cat = page.categories | first -%}
+            <a href="{{ "/" | append: cat | append: "/" | relative_url }}">{{ cat }}</a>
+          </span>
+        {%- endif -%}
+      </div>
+      {%- capture display_title -%}{% include post-title.html title=page.title %}{%- endcapture -%}
+      <h1 class="post-title" itemprop="name headline">{{ display_title | escape }}</h1>
+      {%- if page.summary -%}
+        <p class="post-summary">{{ page.summary | strip_html }}</p>
+      {%- endif -%}
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
+      {%- if page.tags -%}
+        <div class="post-tags">
+          {%- for tag in page.tags -%}
+            {%- assign t = site.data.taxonomy | find: "name", tag -%}
+            {%- include tag-chip.html tag=tag taxonomy=t -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- include cover.html post=page size='hero' -%}
+    </header>
+
+    <aside class="post-toc" aria-label="目录">
+      <details class="toc-details" open>
+        <summary>目录</summary>
+        <nav class="toc-nav" aria-label="章节目录">
+          {%- include toc.html -%}
+        </nav>
+      </details>
+    </aside>
+
+    <div class="post-body">
+      <div class="post-content" itemprop="articleBody">
+        {{ content }}
+      </div>
+
+      {%- if page.series -%}
+        <p class="series-note">系列：
+          {%- for t in site.data.taxonomy -%}
+            {%- if t.slug == page.series and page.series -%}
+              <a href="{{ "/tags/#" | append: t.slug | relative_url }}">{{ t.name }}</a>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if page.series_order -%}（第 {{ page.series_order }} 篇）{%- endif -%}
+        </p>
+      {%- endif -%}
+
+      <nav class="post-nav" aria-label="前后文章">
+        {%- if page.previous -%}
+          <a class="post-nav-card prev" href="{{ page.previous.url | relative_url }}" rel="prev">
+            <span class="post-nav-label">← 上一篇</span>
+            <span class="post-nav-title">{{ page.previous.title | escape }}</span>
+          </a>
+        {%- else -%}
+          <span class="post-nav-card is-empty" aria-hidden="true"></span>
+        {%- endif -%}
+        {%- if page.next -%}
+          <a class="post-nav-card next" href="{{ page.next.url | relative_url }}" rel="next">
+            <span class="post-nav-label">下一篇 →</span>
+            <span class="post-nav-title">{{ page.next.title | escape }}</span>
+          </a>
+        {%- else -%}
+          <span class="post-nav-card is-empty" aria-hidden="true"></span>
+        {%- endif -%}
+      </nav>
+
+      {%- if page.tags -%}
+        {%- if page.tags.size > 0 -%}
+          {%- comment -%} 相关文章：按共享标签数取前 3（去重；用 3 个「最佳」槽位迭代选取）{%- endcomment -%}
+          {%- assign slot_a_url = nil -%}
+          {%- assign slot_b_url = nil -%}
+          {%- assign slot_c_url = nil -%}
+          {%- assign slot_a_shared = 0 -%}
+          {%- assign slot_b_shared = 0 -%}
+          {%- assign slot_c_shared = 0 -%}
+          {%- for p in site.posts -%}
+            {%- if p.url != page.url -%}
+              {%- assign shared = 0 -%}
+              {%- for t in p.tags -%}
+                {%- if page.tags contains t -%}
+                  {%- assign shared = shared | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if shared > 0 -%}
+                {%- if p.url != slot_a_url and p.url != slot_b_url and p.url != slot_c_url -%}
+                  {%- assign p_date = p.date | date: "%Y-%m-%d" -%}
+                  {%- if shared > slot_a_shared -%}
+                    {%- assign slot_a_shared = shared -%}
+                    {%- assign slot_a_url = p.url -%}
+                    {%- assign slot_a_title = p.title -%}
+                    {%- assign slot_a_date = p_date -%}
+                    {%- assign slot_a_tags = p.tags -%}
+                  {%- elsif shared > slot_b_shared -%}
+                    {%- assign slot_b_shared = shared -%}
+                    {%- assign slot_b_url = p.url -%}
+                    {%- assign slot_b_title = p.title -%}
+                    {%- assign slot_b_date = p_date -%}
+                    {%- assign slot_b_tags = p.tags -%}
+                  {%- elsif shared > slot_c_shared -%}
+                    {%- assign slot_c_shared = shared -%}
+                    {%- assign slot_c_url = p.url -%}
+                    {%- assign slot_c_title = p.title -%}
+                    {%- assign slot_c_date = p_date -%}
+                    {%- assign slot_c_tags = p.tags -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {%- if slot_a_url -%}
+            <section class="related-posts" aria-labelledby="related-heading">
+              <h2 id="related-heading" class="related-heading">相关文章</h2>
+              <div class="related-grid">
+                {%- if slot_a_url -%}
+                  <a class="related-card" href="{{ slot_a_url | relative_url }}">
+                    <span class="related-date">{{ slot_a_date }}</span>
+                    <span class="related-title">{{ slot_a_title | escape }}</span>
+                  </a>
+                {%- endif -%}
+                {%- if slot_b_url -%}
+                  <a class="related-card" href="{{ slot_b_url | relative_url }}">
+                    <span class="related-date">{{ slot_b_date }}</span>
+                    <span class="related-title">{{ slot_b_title | escape }}</span>
+                  </a>
+                {%- endif -%}
+                {%- if slot_c_url -%}
+                  <a class="related-card" href="{{ slot_c_url | relative_url }}">
+                    <span class="related-date">{{ slot_c_date }}</span>
+                    <span class="related-title">{{ slot_c_title | escape }}</span>
+                  </a>
+                {%- endif -%}
+              </div>
+            </section>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
   </div>
-
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+
+{%- assign mj = false -%}
+{%- if page.mathjax -%}
+  {%- assign mj = true -%}
+{%- endif -%}
+{%- if content contains "$$" -%}
+  {%- assign mj = true -%}
+{%- endif -%}
+{%- if mj -%}
+  {%- include mathjax.html -%}
+{%- endif -%}

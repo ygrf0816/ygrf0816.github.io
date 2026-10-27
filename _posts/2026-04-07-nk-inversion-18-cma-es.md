@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（18）：基于 CMA-ES �
 date: 2026-04-07 19:13:50 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 机器学习设计]
+keywords: [CMA-ES, 进化策略, 金属氧化物, 钙钛矿薄膜, 分光光度数据]
+series: nk-inversion
+series_order: 18
+summary: "用CMA-ES进化策略全局拟合分光光度数据，从金属氧化物与钙钛矿薄膜中稳健提取厚度与n、k。"
+cover: /assets/posts_figs/nk-inversion-18-cma-es/fig_p06_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（18）：基于 CMA-ES 算法从分光光度计数据提取薄膜厚度和光学常数

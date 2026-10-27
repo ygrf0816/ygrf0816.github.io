@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（12）：薄膜光学常�
 date: 2026-04-07 19:12:13 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [多解歧义, 反射透射, 符号等价, 周期性等价, 参数等价]
+series: nk-inversion
+series_order: 12
+summary: "系统分析由R、T数据反演n、k、d时的多解歧义，归为符号、参数、周期三类等价，并指出解决途径。"
+cover: /assets/posts_figs/nk-inversion-12-ambiguity/fig_p02_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（12）：薄膜光学常数测定中的歧义（多解）问题

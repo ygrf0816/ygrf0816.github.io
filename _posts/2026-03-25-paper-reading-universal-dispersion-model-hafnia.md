@@ -4,6 +4,11 @@ title: "[论文阅读] 宽光谱通用色散模型及其在 HfO₂ 薄膜表征�
 date: 2026-03-25 13:18:51 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [色散模型, 光学常数反演, 薄膜工艺]
+keywords: [HfO2, UDM, 联合态密度, Urbach尾, 声子吸收]
+summary: "基于联合态密度参数化提出通用色散模型UDM，在HfO2薄膜上分离带间跃迁与声子吸收贡献并估算有效价电子数。"
+cover: /assets/posts_figs/paper-reading-universal-dispersion-model-hafnia/fig_p01_01.jpeg
 ---
 
 # [论文阅读] 宽光谱通用色散模型及其在 HfO₂ 薄膜表征中的应用

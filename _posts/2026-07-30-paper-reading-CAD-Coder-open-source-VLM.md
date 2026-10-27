@@ -4,6 +4,12 @@ title: "[论文阅读] CAD-Coder：面向 CAD 代码生成的开源视觉语言�
 date: 2026-07-30 12:36:29 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [CAD 生成, 机器学习设计]
+keywords: [CadQuery, LLaVA, GenCAD-Code, 视觉指令微调]
+series: cad-generation
+series_order: 1
+summary: "微调开源VLM直接输出CadQuery脚本生成参数化CAD，构建GenCAD-Code数据集，缓解合成数据分布受限与几何幻觉问题。"
 ---
 
 # [论文阅读] CAD-Coder：面向 CAD 代码生成的开源视觉语言模型

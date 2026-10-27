@@ -4,6 +4,10 @@ title: "[论文阅读] 基于 W:VO₂ 超表面的空间辐射制冷智能柔性
 date: 2026-06-24 16:31:57 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [相变材料, 热辐射调控]
+keywords: [掺钨VO₂, meta-OSR, EBL, NIL, 辐射制冷]
+summary: "报道掺钨VO₂超表面基智能柔性光学太阳反射镜，实现空间辐射制冷的高太阳反射与红外发射切换，经ESA空间鉴定测试验证大面积器件适用性。"
 ---
 
 # [论文阅读] 基于 W:VO₂ 超表面的空间辐射制冷智能柔性光学太阳反射镜

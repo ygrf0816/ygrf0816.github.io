@@ -4,6 +4,10 @@ title: "[原理学习] 旋转检偏器型椭偏仪的测量原理"
 date: 2026-04-09 12:32:00 +0800
 categories: Learning
 mathjax: true
+type: 原理学习
+tags: [椭偏测量, 光学常数反演]
+keywords: [琼斯矩阵, Psi/Delta, 傅里叶展开, RAE, RPE]
+summary: "推导旋转检偏器椭偏仪原理，详解由强度信号经琼斯矩阵与傅里叶展开提取Psi、Delta，并对比各型椭偏仪与完整测量流程。"
 ---
 
 # 旋转检偏器型椭偏仪的测量原理

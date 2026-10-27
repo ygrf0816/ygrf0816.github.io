@@ -1,34 +1,77 @@
 ---
 layout: default
 ---
+<div class="home-wrap">
+  {%- include hero.html -%}
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+  <section class="home-section" aria-labelledby="home-latest-heading">
+    <div class="wrap-wide">
+      <h2 id="home-latest-heading" class="section-heading">最新文章</h2>
+      <div class="post-grid">
+        {%- for post in site.posts -%}
+          {%- if forloop.index > 6 -%}{%- break -%}{%- endif -%}
+          {%- assign p = post -%}
+          {%- include post-card.html post=p -%}
+        {%- endfor -%}
+      </div>
+      <p class="home-more">
+        <a href="{{ "/archive/" | relative_url }}">浏览全部文章 →</a>
+        <span class="dot-sep" aria-hidden="true">·</span>
+        <a href="{{ "/feed.xml" | relative_url }}">订阅 RSS</a>
+      </p>
+    </div>
+  </section>
 
-  {{ content }}
-
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
+  <section class="home-section home-section-alt" aria-labelledby="home-topics-heading">
+    <div class="wrap-wide">
+      <h2 id="home-topics-heading" class="section-heading">研究主题</h2>
+      <p class="section-note">按一级标签浏览笔记与阅读记录。</p>
+      <div class="tag-cloud">
+        {%- for t in site.data.taxonomy -%}
+          <a class="tag-chip tag-cloud-item" style="--tag-color: {{ t.color | default: "var(--accent)" }}"
+             href="{{ "/tags/#" | append: t.slug | relative_url }}" data-tag="{{ t.name }}">
+            <span class="tag-dot" aria-hidden="true"></span>
+            {{ t.name }}
           </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+        {%- endfor -%}
+      </div>
+      <p class="section-note">
+        共 <strong>{{ site.data.taxonomy.size }}</strong> 个主题标签。
+        <a href="{{ "/tags/" | relative_url }}">查看标签详情</a>
+        <span class="dot-sep" aria-hidden="true">·</span>
+        <a href="{{ "/graph/" | relative_url }}">浏览知识图谱</a>
+      </p>
+    </div>
+  </section>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
-
+  <section class="tf-section" aria-labelledby="home-feed-heading">
+    <div class="wrap-wide">
+      <h2 id="home-feed-heading" class="section-heading tf-section-title">全部文章 · 信息流</h2>
+      <p class="section-note">按年份分组，新 → 老；共 {{ site.posts.size }} 篇。</p>
+      <div class="tf-timeline">
+        {%- assign last_year = "" -%}
+        {%- for post in site.posts -%}
+          {%- assign y = post.date | date: "%Y" -%}
+          {%- if y != last_year -%}
+            {%- unless forloop.first -%}</div></section>{%- endunless -%}
+            <section class="tf-year" id="tf-year-{{ y }}">
+              {%- assign ykey = post.date | date: "%Y" -%}
+              {%- assign year_count = 0 -%}
+              {%- for p2 in site.posts -%}
+                {%- assign ykey2 = p2.date | date: "%Y" -%}
+                {%- if ykey2 == ykey -%}{%- assign year_count = year_count | plus: 1 -%}{%- endif -%}
+              {%- endfor -%}
+              <h3 class="tf-year-title"><span class="tf-year-num">{{ y }}</span><span class="tf-year-count">{{ year_count }} 篇</span></h3>
+              <div class="tf-year-items">
+            {%- assign last_year = y -%}
+          {%- endif -%}
+          {%- assign first_tag = post.tags | first -%}
+          {%- assign t = site.data.taxonomy | find: "name", first_tag -%}
+          {%- include timeline-item.html post=post taxonomy=t is_last=forloop.last -%}
+        {%- endfor -%}
+        </div>
+      </section>
+      </div>
+    </div>
+  </section>
 </div>

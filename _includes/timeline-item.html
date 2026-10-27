@@ -1,0 +1,37 @@
+{%- comment -%}
+  首页信息流条目（代理 G1）。入参：
+    include.post        —— 文章对象
+    include.taxonomy    —— 该文章首标签对应的 taxonomy 记录（可为 nil）
+    include.is_last     —— 是否为该年最后一条（是则不画竖线）
+  时间轴竖线与圆点用 CSS（.tf-item::before + .tf-dot）实现；
+  圆点颜色取首标签 taxonomy 颜色（--tag-color），兜底 var(--accent)。
+{%- endcomment -%}
+{%- assign post = include.post -%}
+{%- assign first_tag = post.tags | first -%}
+{%- assign type = post.type | default: "随笔" -%}
+{%- assign cat = post.categories | first -%}
+{%- capture tf_title -%}{% include post-title.html title=post.title %}{%- endcapture -%}
+<article class="tf-item{% if include.is_last %} tf-item-last{% endif %}" style="--tag-color: {{ include.taxonomy.color | default: "var(--accent)" }}">
+  <span class="tf-dot" aria-hidden="true"></span>
+  <div class="tf-content">
+    <div class="tf-line1">
+      <time class="tf-date">{{ post.date | date: "%m-%d" }}</time>
+      <span class="badge badge-type tf-type">{{ type }}</span>
+      {%- if cat -%}
+        <span class="tf-cat">{{ cat }}</span>
+      {%- endif -%}
+      <a class="tf-title" href="{{ post.url | relative_url }}">{{ tf_title | escape }}</a>
+    </div>
+    {%- if post.summary -%}
+      <p class="tf-summary">{{ post.summary | strip_html | truncate: 90 }}</p>
+    {%- endif -%}
+    {%- if post.tags and post.tags.size > 0 -%}
+      <div class="tf-tags">
+        {%- for tag in post.tags | slice: 0, 3 -%}
+          {%- assign t = site.data.taxonomy | find: "name", tag -%}
+          {%- include tag-chip.html tag=tag taxonomy=t -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</article>

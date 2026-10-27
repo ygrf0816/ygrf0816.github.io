@@ -4,6 +4,12 @@ title: "[论文阅读] Drawing2CAD：从矢量工程图到参数化 CAD 序列�
 date: 2026-07-30 11:13:20 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [CAD 生成, 机器学习设计]
+keywords: [SVG矢量图, seq2seq, 软目标分布, DeepCAD]
+series: cad-generation
+series_order: 2
+summary: "以矢量工程图替代栅格输入，序列到序列网络直接生成参数化CAD指令序列，配软目标分布损失降低几何误差。"
 ---
 
 # [论文阅读] Drawing2CAD：从矢量工程图到参数化 CAD 序列的序列到序列学习

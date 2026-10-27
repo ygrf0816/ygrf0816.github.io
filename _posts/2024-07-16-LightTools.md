@@ -4,6 +4,11 @@ title: "LightTools 软件学习笔记"
 date: 2024-07-16 17:43:33 +0800
 categories: Learning
 mathjax: true
+type: 技术笔记
+tags: [光学仿真, 科研工作流]
+keywords: [LightTools, 凹透镜聚光, PMMA, 接收视角, 平行光源]
+summary: "以凹透镜聚光系统为例，记录LightTools的初始设置、接收器单位切换、显示选项与平行光源的搭建方法。"
+cover: /assets/posts_figs/2024-07-16-LightTools/image-20240716174018971.png
 ---
 
 # 用lighttools做一个简单的凹透镜聚光系统

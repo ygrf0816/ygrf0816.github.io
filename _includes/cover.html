@@ -1,0 +1,38 @@
+{%- assign post = include.post -%}
+{%- assign size = include.size | default: "card" -%}
+{%- assign eager = false -%}
+{%- if size == "hero" -%}
+  {%- assign eager = true -%}
+{%- endif -%}
+{%- if include.eager -%}
+  {%- assign eager = true -%}
+{%- endif -%}
+{%- assign cover_color = "#3a5fcd" -%}
+{%- assign fallback_word = "" -%}
+{%- if post.tags -%}
+  {%- assign first_tag = post.tags | first -%}
+  {%- assign t = site.data.taxonomy | find: "name", first_tag -%}
+  {%- if t and t.color -%}
+    {%- assign cover_color = t.color -%}
+  {%- endif -%}
+  {%- assign fallback_word = first_tag -%}
+{%- endif -%}
+{%- if post.keywords -%}
+  {%- assign kw = post.keywords | first -%}
+  {%- if kw and kw != "" -%}
+    {%- assign fallback_word = kw -%}
+  {%- endif -%}
+{%- endif -%}
+{%- if fallback_word == "" -%}
+  {%- assign fallback_word = post.type | default: "随笔" -%}
+{%- endif -%}
+<div class="cover cover--{{ size }}" style="--cover-color: {{ cover_color }}">
+  {%- if post.cover -%}
+    <img class="cover-img" src="{{ post.cover | relative_url }}" alt="" loading="{% if eager %}eager{% else %}lazy{% endif %}" decoding="async">
+  {%- else -%}
+    <div class="cover-fallback" aria-hidden="true">
+      <span class="cover-fallback-type">{{ post.type | default: "随笔" }}</span>
+      <span class="cover-fallback-word">{{ fallback_word }}</span>
+    </div>
+  {%- endif -%}
+</div>

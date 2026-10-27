@@ -1,0 +1,92 @@
+---
+layout: default
+---
+{%- comment -%} 各标签文章数（ Liquid 单遍内计） {%- endcomment -%}
+{%- assign tag_counts = "" -%}
+<div class="tags-page">
+  <header class="page-head">
+    <h1 class="post-title">标签</h1>
+    <p class="page-note">按一级标签浏览全部笔记；每个标签显示文章数量。点击标签名跳到对应列表，「展开/收起」切换该标签下的文章。</p>
+  </header>
+
+  <div class="tags-cloud" aria-label="标签云（字号按文章数分级）">
+    {%- for t in site.data.taxonomy -%}
+      {%- assign cnt = 0 -%}
+      {%- for p in site.posts -%}
+        {%- if p.tags contains t.name -%}{%- assign cnt = cnt | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+      {%- if cnt > 0 -%}
+        {%- if cnt >= 8 -%}{%- assign size = "lg" -%}{%- elsif cnt >= 4 -%}{%- assign size = "md" -%}{%- else -%}{%- assign size = "sm" -%}{%- endif -%}
+        <a class="tag-cloud-pill tcs-{{ size }}" style="--tag-color: {{ t.color | default: "var(--accent)" }}"
+           href="#{{ t.slug }}" data-tag="{{ t.name }}">{{ t.name }}<span class="tc-count">{{ cnt }}</span></a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="tag-groups">
+    {%- for t in site.data.taxonomy -%}
+      {%- assign count = 0 -%}
+      {%- for p in site.posts -%}
+        {%- if p.tags contains t.name -%}{%- assign count = count | plus: 1 -%}{%- endif -%}
+      {%- endfor -%}
+      {%- if count > 0 -%}
+        <section class="tag-group" id="{{ t.slug }}" style="--tag-color: {{ t.color | default: "var(--accent)" }}">
+          <button class="tag-group-head" type="button" aria-expanded="true" aria-controls="posts-{{ t.slug }}">
+            <span class="tag-group-name">
+              <a class="tag-chip tag-chip-lg" href="#{{ t.slug }}">{{ t.name }}</a>
+            </span>
+            <span class="tag-count">{{ count }}</span>
+            <span class="tag-group-toggle" aria-hidden="true">收起 ▴</span>
+          </button>
+          {%- if t.desc -%}<p class="tag-group-desc">{{ t.desc }}</p>{%- endif -%}
+          <ul class="tag-post-list" id="posts-{{ t.slug }}">
+            {%- for p in site.posts -%}
+              {%- if p.tags contains t.name -%}
+                <li class="tag-post-row">
+                  {%- assign ptype = p.type | default: "随笔" -%}
+                  <span class="badge badge-type">{{ ptype }}</span>
+                  {%- capture clean_title -%}{% include post-title.html title=p.title %}{%- endcapture -%}
+                  <a class="tag-post-link" href="{{ p.url | relative_url }}">{{ clean_title | escape }}</a>
+                  <time class="tag-post-date">{{ p.date | date: "%Y-%m-%d" }}</time>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </section>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+(function () {
+  // 展开 / 收起：点击区块头部切换该标签下的文章列表
+  document.querySelectorAll('.tag-group-head').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var list = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!list) return;
+      var hidden = list.hasAttribute('hidden');
+      if (hidden) { list.removeAttribute('hidden'); } else { list.setAttribute('hidden', ''); }
+      btn.setAttribute('aria-expanded', hidden ? 'true' : 'false');
+      var tog = btn.querySelector('.tag-group-toggle');
+      if (tog) tog.textContent = hidden ? '收起 ▴' : '展开 ▾';
+    });
+  });
+
+  // 深链 /tags/#slug：滚动到位并高亮 1.5s
+  function flashGroup() {
+    var id = location.hash.replace('#', '');
+    if (!id) return;
+    var g = document.getElementById(id);
+    if (!g) return;
+    g.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    g.classList.add('is-flash');
+    setTimeout(function () { g.classList.remove('is-flash'); }, 1500);
+  }
+  window.addEventListener('hashchange', flashGroup);
+  if (location.hash) {
+    // 首次进入带 hash：延迟等布局稳定
+    setTimeout(flashGroup, 60);
+  }
+})();
+</script>

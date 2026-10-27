@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（02）：HfO₂ 薄膜光
 date: 2026-04-07 19:07:52 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 色散模型]
+keywords: [HfO₂, Urbach尾, Tauc-Lorentz, Cody-Lorentz]
+series: nk-inversion
+series_order: 2
+summary: "结合椭偏与光谱法测定HfO₂薄膜n、k，用Tauc-Lorentz和Cody-Lorentz模型验证带隙以下弱吸收符合Urbach尾。"
+cover: /assets/posts_figs/nk-inversion-02-hfo2-urbach-tail/fig_p02_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（02）：HfO₂ 薄膜光学性质与 Urbach 尾研究

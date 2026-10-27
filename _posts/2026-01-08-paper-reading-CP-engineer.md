@@ -4,6 +4,11 @@ title: "[论文阅读] PSK的组分工程与带隙和稳定性之间的关系"
 date: 2024-07-16 17:43:33 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光伏与能源器件, 光学设计]
+keywords: [钙钛矿, 带隙, 相分离, CsBr, 叠层电池]
+summary: "分析混合钙钛矿中Cs与Br比例对带隙和光致卤素相分离的影响，给出叠层电池最优带隙1.68至1.75电子伏特。"
+cover: /assets/posts_figs/2026-01-08-paper-reading-CP-engineer/image-20240711154841551.png
 ---
 
 ###  Bush K.A, Compositional Engineering for Efficient Wide Band Gap Perovskites with Improved Stability to Photoinduced Phase Segregation, 2018, ACS Energy Lett,3,428-435

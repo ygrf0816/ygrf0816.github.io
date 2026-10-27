@@ -4,6 +4,11 @@ title: "[论文阅读] 垂直表面的日间亚环境辐射制冷"
 date: 2026-03-16 15:40:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [热辐射调控, 超表面与超材料]
+keywords: [辐射制冷, 角非对称发射器, 纳米多孔聚乙烯, 亚环境制冷, 天空窗口]
+summary: "设计锯齿栅格加高反红外透明薄膜的角非对称发射器，使垂直表面在920W每平方米辐照下比环境温度低2.5摄氏度。"
+cover: /assets/posts_figs/2026-03-16-paper-vertical-radiative-cooling/image-20260316133949771.png
 ---
 
 # [论文阅读] 垂直表面的日间亚环境辐射制冷

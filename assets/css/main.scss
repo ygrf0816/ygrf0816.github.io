@@ -1,0 +1,14 @@
+---
+# 样式入口：只做组装，具体规则在 _sass/ 下
+#   base.scss       —— 设计令牌、排版、导航、卡片、文章页、列表页
+#   search.scss     —— 站内搜索页
+#   graph.scss      —— 知识图谱页
+#   feed.scss       —— 首页信息流、回到顶部
+#   card-cover.scss —— 卡片封面 / 文章头图
+# 输出：/assets/css/main.css
+---
+@import "base";
+@import "search";
+@import "graph";
+@import "feed";
+@import "card-cover";

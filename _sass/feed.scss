@@ -1,0 +1,226 @@
+/* ============================================================
+   首页信息流 + 回到顶部 + 宽屏居中（代理 G1）
+   设计令牌复用 CONTRACT §2（_sass/base.scss :root）；颜色/圆角/阴影一律走变量。
+   ============================================================ */
+
+/* ---------- 宽屏统一（补充 base.scss）：文章页整体居中 1060 ---------- */
+/* 导航 / 页脚 / 首页 / 分类 / 标签 / 归档的版心规则见 _sass/base.scss
+   （.site-header .wrap-wide、.site-footer .wrap-wide、.home-wrap .wrap-wide、
+   .tags-page/.archive-page/.category-page）。 */
+/* 文章页：article.post（header + TOC + 正文整体）居中，容器 1060 */
+article.post {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+article.post .post-layout {
+  max-width: 964px; /* 220(TOC) + 36(gap) + 708(≈720 正文)，在 1060 容器内保持 720 正文列 */
+  margin: 0 auto;
+}
+
+/* ---------- 首页信息流（.tf-section / .tf-item 时间轴） ---------- */
+.tf-section {
+  padding: 40px 0 10px;
+}
+.tf-section .section-note {
+  margin-bottom: 24px;
+}
+.tf-year {
+  margin-bottom: 10px;
+}
+.tf-year-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-soft);
+}
+.tf-year-num {
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+.tf-year-count {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: var(--font-sans);
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+.tf-year-items {
+  padding-left: 34px; /* 给时间轴竖线 + 圆点留位 */
+}
+
+/* 单条信息流条目：左侧竖线 + 圆点，右侧三行内容 */
+.tf-item {
+  position: relative;
+  padding: 14px 0;
+}
+/* 竖线：贯穿本条（从上一条目圆点下方到本条圆点），最后一条不画线 */
+.tf-item::before {
+  content: "";
+  position: absolute;
+  left: -26px; /* 与 .tf-dot 的 left 对齐 */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--line);
+}
+.tf-item:first-child::before {
+  top: 14px; /* 第一条从自身圆点起 */
+}
+.tf-item-last::before {
+  display: none;
+}
+/* 年份切换处：该年第一条与上条之间留白，线断开 */
+.tf-year + .tf-year .tf-item:first-child::before {
+  top: 14px;
+}
+.tf-dot {
+  position: absolute;
+  left: -26px;
+  top: 24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--tag-color, var(--accent));
+  border: 2px solid var(--surface);
+  box-shadow: var(--shadow-sm);
+  z-index: 1;
+}
+
+.tf-content {
+  max-width: 860px;
+}
+.tf-line1 {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+.tf-date {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+  flex: 0 0 auto;
+}
+.tf-type {
+  flex: 0 0 auto;
+}
+.tf-cat {
+  flex: 0 0 auto;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 0 8px;
+  line-height: 1.5;
+  background: var(--surface-2);
+}
+.tf-title {
+  flex: 1 1 100%;
+  min-width: 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-decoration: none;
+}
+.tf-title:hover {
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.tf-summary {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin: 6px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.tf-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.tf-tags .tag-chip {
+  font-size: 12px;
+  padding: 2px 8px;
+}
+
+/* ---------- 回到顶部按钮 ---------- */
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-2);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, background 0.15s, color 0.15s, border-color 0.15s;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  background: var(--accent);
+  color: var(--surface);
+  border-color: var(--accent);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* ---------- 窄屏兜底（≤760px）：单列、padding 16px、防横向溢出 ---------- */
+@media (max-width: 760px) {
+  .site-header .wrap-wide,
+  .site-footer .wrap-wide,
+  .home-wrap .wrap-wide,
+  .tags-page, .archive-page, .category-page,
+  article.post {
+    padding-inline: 16px;
+  }
+  .post-grid {
+    grid-template-columns: 1fr;
+  }
+  .tf-year-items {
+    padding-left: 24px;
+  }
+  .tf-item::before { left: -18px; }
+  .tf-dot { left: -18px; }
+  .tf-item:first-child::before { top: 12px; }
+  .tf-dot { top: 20px; }
+  .tf-line1 { gap: 6px 8px; }
+  .tf-title { font-size: 1rem; }
+  .back-to-top {
+    right: 16px;
+    bottom: 20px;
+  }
+  html, body { overflow-x: hidden; }
+}

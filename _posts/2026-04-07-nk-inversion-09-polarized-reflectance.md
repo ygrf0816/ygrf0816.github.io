@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（09）：利用偏振反�
 date: 2026-04-07 19:11:25 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [p、s偏振反射率, 单层膜验证, 双层膜验证]
+series: nk-inversion
+series_order: 9
+summary: "用p和s偏振反射率联立方程同时测定薄膜折射率与厚度，并在单层、双层膜上验证方法稳定性。"
+cover: /assets/posts_figs/nk-inversion-09-polarized-reflectance/fig_p02_cap01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（09）：利用偏振反射率同时测量薄膜折射率和厚度

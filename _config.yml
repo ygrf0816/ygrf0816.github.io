@@ -1,19 +1,52 @@
 title: CHZhang's Blog
 email: sudazhangchenhui@163.com
-description: >- # this means to ignore newlines until "baseurl:"
-  这是我的个人博客内容，用于更新自己的学习感悟，思考结果；欢迎访问交流！
+description: >-
+  科研笔记与论文阅读记录：光学薄膜、椭偏测量、光谱表征、薄膜工艺、相变材料、机器学习与科研工具。欢迎访问交流！
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://ygrf0816.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://ygrf0816.github.io" # the base hostname & protocol for your site
 twitter_username: ygrf0816
 github_username:  ygrf0816
 
-# Build settings
-theme: minima
+lang: zh-CN
+
+# 注意：不设置 permalink，文章 URL 保持默认 /category/YYYY/MM/DD/slug.html
+# 现有文章位于 Learning/Project/Reading 分类目录，URL 保持 /Learning|Project|Reading/YYYY/MM/DD/slug.html
+
+# 自定义主题不再依赖 minima gem；样式与脚本全部自包含
+# 仅使用 GitHub Pages 白名单插件
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
-header_pages:
-  - about.md
-  - layout_learning.md
-  - layout_project.md
-  - layout_reading.md
+# RSS：默认只输出 10 篇，这里放宽到全部近期文章
+feed:
+  posts_limit: 50
+
+# 日期格式（中文）
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+# 不发布到站点的内容（覆盖 Jekyll 默认 exclude，故把默认项一并保留）
+exclude:
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - temp
+  - "*.zip"
+  - README.md
+  - _plan
+
+# RSS 摘要长度
+excerpt_separator: <!--more-->
+
+# 站点级日期显示格式
+site_date_format: "%Y-%m-%d"

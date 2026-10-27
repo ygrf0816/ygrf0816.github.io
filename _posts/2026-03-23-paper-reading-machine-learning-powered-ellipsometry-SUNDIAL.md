@@ -4,6 +4,10 @@ title: "[论文阅读] Machine Learning Powered Ellipsometry（SUNDIAL）"
 date: 2026-03-23 23:58:24 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [椭偏测量, 机器学习设计]
+keywords: [SUNDIAL, Psi Delta, 残差U模块, 双模块闭环, Au]
+summary: "SUNDIAL用双模块闭环网络离线预训练加在线迭代推理，快速反演Au、TiO2与Si薄膜的n、k与膜厚。"
 ---
 
 # [论文阅读] Machine Learning Powered Ellipsometry（SUNDIAL）

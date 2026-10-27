@@ -1,0 +1,7 @@
+{%- assign tag = include.tag -%}
+{%- assign t = include.taxonomy -%}
+{%- if t -%}
+  <a class="tag-chip" style="--tag-color: {{ t.color | default: "var(--accent)" }}" href="{{ "/tags/#" | append: t.slug | relative_url }}" data-tag="{{ tag }}">{{ tag }}</a>
+{%- else -%}
+  <span class="tag-chip">{{ tag }}</span>
+{%- endif -%}

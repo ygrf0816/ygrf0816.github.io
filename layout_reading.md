@@ -1,10 +1,7 @@
 ---
-layout: page
-title: Reading
+layout: category
+title: 阅读
 permalink: /Reading/
+description: 阅读类文章：论文阅读与读书笔记。
+category: Reading
 ---
-
-{% for post in site.categories.Reading %}
-   [{{ post.title }}]({{ post.url }})
-  *发表于 {{ post.date | date: "%Y-%m-%d" }}*
-{% endfor %}

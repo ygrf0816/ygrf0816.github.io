@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（03）：深度学习与�
 date: 2026-04-07 19:08:30 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 机器学习设计]
+keywords: [CNN, 迁移学习, 对数alpha谱, 透射谱]
+series: nk-inversion
+series_order: 3
+summary: "用卷积神经网络从透射谱直接提取对数alpha光谱并反演n、k与膜厚，免去迭代拟合的局部最优问题。"
+cover: /assets/posts_figs/nk-inversion-03-deep-learning-log-alpha/fig_p01_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（03）：深度学习与对数 α 光谱的薄膜光学常数反演

@@ -4,6 +4,12 @@ title: "[论文阅读] CADDesigner：基于通用智能体的概念 CAD 模型�
 date: 2026-08-06 19:19:30 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [CAD 生成, 机器学习设计]
+keywords: [ReAct智能体, ECIP, SimpleCADAPI, RAG]
+series: cad-generation
+series_order: 4
+summary: "不训练模型，用ReAct智能体与知识库约束生成CadQuery代码，提出LLM友好的ECIP范式实现概念CAD迭代纠错。"
 ---
 
 # [论文阅读] CADDesigner：基于通用智能体的概念 CAD 模型生成

@@ -4,6 +4,10 @@ title: "[专题调研] 渐进镜（Progressive Addition Lens）研究综述"
 date: 2026-06-01 11:32:28 +0800
 categories: Project
 mathjax: true
+type: 专题调研
+tags: [光学设计, 机器学习设计]
+keywords: [自由曲面, NURBS, PINN, 视觉眩晕, 附加光度]
+summary: "综述渐进多焦点镜片自由曲面设计方法与佩戴不适因素，梳理NURBS、PINN、CNN在镜片设计与个性化推荐中的应用进展。"
 ---
 
 # [专题调研] 渐进镜（Progressive Addition Lens）研究综述

@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（04）：光学多层薄�
 date: 2026-04-07 19:09:36 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 机器学习设计, 光学设计]
+keywords: [多层薄膜逆设计, 深度学习方法, 优化方法对比]
+series: nk-inversion
+series_order: 4
+summary: "对比传统优化与深度学习方法做多层薄膜结构逆设计，从目标性能直接推算各层参数，提升滤光片等设计效率。"
+cover: /assets/posts_figs/nk-inversion-04-multilayer-inverse-design/fig_p03_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（04）：光学多层薄膜结构逆设计：从优化到深度学习

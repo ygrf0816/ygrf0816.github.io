@@ -4,6 +4,11 @@ title: "[论文阅读] 违背基尔霍夫热辐射定律的超表面结构"
 date: 2026-03-26 17:00:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [热辐射调控, 超表面与超材料]
+keywords: [基尔霍夫定律, n-InAs, 磁光效应, 导模共振, 非互易]
+summary: "用磁光n-InAs加导模共振结构构建非互易热辐射器，磁场下发射率与吸收率不再相等，直接观测到基尔霍夫定律被违背。"
+cover: /assets/posts_figs/2026-03-26-paper-reading-violate-kirchhoff-law/image-20260326150218733.png
 ---
 
 # 违背基尔霍夫热辐射定律的超表面结构
@@ -51,7 +56,7 @@ $$\alpha(\lambda, \theta, \chi, T) = e(\lambda, \theta, \chi, T)$$
 
 ### 3.1 双层光子结构
 
-![image-20260326150218733](E:\workspace\mygithubpage\assets\posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150218733.png)
+![image-20260326150218733](/assets/posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150218733.png)
 
 结构如上图a和b所示。图c展示了不同温度下角度与辐射光波长之间实测结果（空心圆点）与理论计算（实线）的对比图，可见随着温度上升，辐射光出现明显的红移
 
@@ -82,9 +87,9 @@ $$\varepsilon(\omega) = \begin{pmatrix} \varepsilon_{xx} & \varepsilon_{xy} & 0 
 
 其中,非对角项 $\varepsilon_{xy} = -\varepsilon_{yx}$ 在 ENZ 波长附近达到最大，是非互易效应的根源。相关介电常数计算式如下
 
-<img src="E:\workspace\mygithubpage\assets\posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326144016990.png" alt="image-20260326144016990" style="zoom: 67%;" />
+<img src="/assets/posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326144016990.png" alt="image-20260326144016990" style="zoom: 67%;" />
 
-<img src="E:\workspace\mygithubpage\assets\posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326144031596.png" alt="image-20260326144031596" style="zoom:67%;" />
+<img src="/assets/posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326144031596.png" alt="image-20260326144031596" style="zoom:67%;" />
 
 关键参数：
 
@@ -101,7 +106,7 @@ a-Si 条带状光栅结构支持 TM 偏振的导波模式（“guided-mode reson
 非对角介电分量破坏洛伦兹互易性 → 吸收率和发射率的磁场响应方向**相反**：
 
 Onsager-Casimir关系：
-![image-20260326145245105](E:\workspace\mygithubpage\assets\posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326145245105.png)
+![image-20260326145245105](/assets/posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326145245105.png)
 
 即：改变入射方向（θ → −θ）等价于反转磁场（B → −B）。
 
@@ -151,13 +156,13 @@ $$e_{\text{sample}}(\lambda,\theta,\chi,T) = \frac{I_{\text{sample}}(\lambda,\th
 
 ### 5.1 零磁场：基尔霍夫定律成立（基准验证）
 
-![image-20260326150319213](E:\workspace\mygithubpage\assets\posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150319213.png)
+![image-20260326150319213](/assets/posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150319213.png)
 
 无外加磁场时，TM 和 TE 偏振的发射率与吸收率谱高度吻合，验证了零场基准下基尔霍夫定律的成立。两者均呈现 Fano 型谱线，由 GMR 的窄共振叠加在 InAs 宽带背景上产生。
 
 ### 5.2 施加磁场：α ≠ e（核心结果）
 
-![image-20260326150449932](E:\workspace\mygithubpage\assets\posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150449932.png)
+![image-20260326150449932](/assets/posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150449932.png)
 
 在 θ = 70° 处，±1 T 磁场对发射率和吸收率的调制**符号相反**：
 
@@ -170,7 +175,7 @@ epsilon-near-zero (ENZ) materials，介电常数近乎为0材料
 
 ### 5.3 Onsager-Casimir 关系验证
 
-![image-20260326150536338](E:\workspace\mygithubpage\assets\posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150536338.png)
+![image-20260326150536338](/assets/posts_figs\2026-03-26-paper-reading-violate-kirchhoff-law\image-20260326150536338.png)
 
 上图a：零磁场时遵循基尔霍夫定律，角度变化对应的发射率e是对称点；而图b展示了随着角度变化，左侧是+1T,最右侧是-1T磁场，观测到明显的角度部队称特性。通过测量 ±θ 和 ±B 的全组合，验证了：
 

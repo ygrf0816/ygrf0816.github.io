@@ -1,0 +1,54 @@
+---
+layout: default
+---
+{%- comment -%}
+  分类页：按页面 front matter 的 page.category 列出该分类下所有文章，按年份分组。
+  由 /Learning/ /Project/ /Reading/ 三个页面使用（各自设 category: 与 permalink）。
+{%- endcomment -%}
+{%- assign cat = page.category -%}
+{%- assign cat_title = page.title -%}
+{%- assign cat_desc = page.description -%}
+{%- assign cat_posts = site.categories[cat] | default: site.posts -%}
+
+<div class="category-page">
+  <header class="page-head">
+    <h1 class="post-title">{{ cat_title | escape }}</h1>
+    {%- if cat_desc -%}<p class="page-note">{{ cat_desc }}</p>{%- endif -%}
+    <p class="page-note">共 {{ cat_posts.size }} 篇。</p>
+  </header>
+
+  <div class="category-timeline">
+    {%- assign last_year = "" -%}
+    {%- for post in cat_posts -%}
+      {%- assign y = post.date | date: "%Y" -%}
+      {%- if y != last_year -%}
+        {%- unless forloop.first -%}</ul></section>{%- endunless -%}
+        <section class="archive-year" id="year-{{ y }}">
+          {%- assign ykey = post.date | date: "%Y" -%}
+          {%- assign year_count = 0 -%}
+          {%- for p2 in cat_posts -%}
+            {%- assign ykey2 = p2.date | date: "%Y" -%}
+            {%- if ykey2 == ykey -%}{%- assign year_count = year_count | plus: 1 -%}{%- endif -%}
+          {%- endfor -%}
+          <h2 class="archive-year-title"><span class="archive-year-num">{{ y }}</span><span class="archive-year-count">{{ year_count }} 篇</span></h2>
+          <ul class="archive-list">
+        {%- assign last_year = y -%}
+      {%- endif -%}
+        <li class="archive-item">
+          {%- assign ptype = post.type | default: "随笔" -%}
+          <span class="badge badge-type">{{ ptype }}</span>
+          {%- capture clean_title -%}{% include post-title.html title=post.title %}{%- endcapture -%}
+          <a class="archive-item-link" href="{{ post.url | relative_url }}">
+            <span class="archive-item-title">{{ clean_title | escape }}</span>
+          </a>
+          <time class="archive-item-date">{{ post.date | date: "%Y-%m-%d" }}</time>
+        </li>
+    {%- endfor -%}
+    {%- if cat_posts.size > 0 -%}
+      </ul>
+    </section>
+    {%- else -%}
+      <p class="page-note">该分类下暂无文章。</p>
+    {%- endif -%}
+  </div>
+</div>

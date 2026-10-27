@@ -1,35 +1,21 @@
-<footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
-
-  <div class="wrapper">
-
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author -%}
-              {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-            </li>
-            {%- if site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {%- endif -%}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
-      </div>
+<footer class="site-footer">
+  <div class="wrap-wide">
+    <div class="footer-inner">
+      <p class="footer-brand">
+        <strong>{{ site.title | escape }}</strong>
+        <span class="footer-desc">{{ site.description | strip | truncate: 60 }}</span>
+      </p>
+      <p class="footer-links">
+        <a href="{{ "/feed.xml" | relative_url }}" aria-label="RSS 订阅">RSS</a>
+        <a href="https://github.com/{{ site.github_username }}" aria-label="GitHub 主页" target="_blank" rel="noopener">GitHub</a>
+        {%- if site.twitter_username -%}
+          <a href="https://twitter.com/{{ site.twitter_username }}" aria-label="Twitter / X" target="_blank" rel="noopener">X / Twitter</a>
+        {%- endif -%}
+      </p>
+      <p class="footer-meta">
+        © {{ "now" | date: "%Y" }} {{ site.title | escape }} · 保留所有权利 ·
+        <span class="footer-built">由 <a href="https://jekyllrb.com/" target="_blank" rel="noopener">Jekyll</a> 构建</span>
+      </p>
     </div>
-
   </div>
-
 </footer>

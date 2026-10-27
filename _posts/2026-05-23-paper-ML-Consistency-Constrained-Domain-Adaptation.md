@@ -4,6 +4,11 @@ title: "[论文阅读] 少样本数据量的连续性限制的域迁移超表面
 date: 2026-05-29 18:19:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [机器学习设计, 超表面与超材料]
+keywords: [域适应, DANN, MMD, 一致性损失, 正逆网络]
+summary: "提出一致性约束域适应框架，解决少样本数据下超表面逆设计的伪解陷阱，用前向反向一致性与循环损失降低样本需求。"
+cover: /assets/posts_figs/2026-05-23-paper-ML-Consistency-Constrained-Domain-Adaptation/image-20260523111043750.png
 ---
 
 > - **标题**：Consistency-Constrained Domain Adaptation for Data-Efficient Inverse Design of Metasurfaces

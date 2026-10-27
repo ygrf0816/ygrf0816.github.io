@@ -4,6 +4,11 @@ title: "[论文阅读] CoSP：基于对比预训练大语言模型的可重构�
 date: 2026-08-21 10:14:47 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [机器学习设计, 超表面与超材料]
+keywords: [对比预训练, GPT-2解码器, InfoNCE, 可重构超材料]
+summary: "光谱编码器经对比预训练对齐结构文本，GPT解码器逆向生成可重构超材料，超训练分布仍保光谱预测精度。"
+cover: /assets/posts_figs/paper-reading-CoSP-contrastive-pretrained-LLM-reconfigurable-metamaterial/fig_p01_01.png
 ---
 
 # [论文阅读] CoSP：基于对比预训练大语言模型的可重构超材料逆设计

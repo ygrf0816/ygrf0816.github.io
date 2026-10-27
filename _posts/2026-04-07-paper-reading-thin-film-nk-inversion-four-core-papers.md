@@ -4,6 +4,11 @@ title: "[论文阅读] 薄膜光学常数反演：四篇核心文献精读"
 date: 2026-04-07 19:28:42 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [PRETTI, 偏振反射, 多解歧义, 弱吸收基底, 四篇精读]
+summary: "精读四篇R、T反演薄膜n、k核心文献，对比增强Swanepoel、PRETTI、多解歧义与包络法的技术路线。"
+cover: /assets/posts_figs/paper-reading-thin-film-nk-inversion-four-core-papers/fig_p03_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演：四篇核心文献精读

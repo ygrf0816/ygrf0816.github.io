@@ -1,0 +1,8 @@
+{%- comment -%}
+  目录：由 theme.js 在运行时扫描 .post-content 的 h2/h3 生成（自动加 id、去重、嵌套、滚动高亮）。
+  此处提供固定容器与占位说明；theme.js 会清空并填充 <ol class="toc-list">。
+  窄屏：容器被收进 <details>（由调用方包裹），见 post.html。
+{%- endcomment -%}
+<ol class="toc-list" data-toc-root>
+  <li class="toc-loading">正在生成目录…</li>
+</ol>

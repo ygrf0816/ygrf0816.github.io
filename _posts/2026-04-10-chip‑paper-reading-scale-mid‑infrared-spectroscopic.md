@@ -4,6 +4,11 @@ title: "[论文阅读] 超表面工程化热辐射体实现芯片级中红外光
 date: 2026-04-10 16:07:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [超表面与超材料, 热辐射调控]
+keywords: [MDM腔, 二维码, 光谱传感, PhotoniX, 中红外]
+summary: "介绍用MDM超表面热辐射体做可编程光源，将光谱编码为二维码类热图像，实现免光谱仪的有机溶剂与药物芯片级中红外识别。"
+cover: /assets/posts_figs/2026-04-10-chip‑paper-reading-scale-mid‑infrared-spectroscopic/image-20260410154631644.png
 ---
 
 # [论文阅读] 超表面工程化热辐射体实现芯片级中红外光谱传感

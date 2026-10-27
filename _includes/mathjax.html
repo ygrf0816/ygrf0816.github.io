@@ -1,11 +1,86 @@
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      processEscapes: true
+{%- comment -%}
+  MathJax v3 加载器。
+  原先只用 jsdelivr，实测在国内网络下经常超时/证书失败，导致「有的文章公式不渲染」。
+  现在改为多 CDN 串行兜底：cdnjs（实测最快）→ staticfile（国内镜像）→ unpkg。
+  全部失败时在正文顶部显示一行提示，而不是静默失败。
+  page.mathjax 或正文含 $$ 时由 post.html 引入。
+{%- endcomment -%}
+<style>
+  .mathjax-fallback-tip {
+    margin: 0 0 20px;
+    padding: 10px 14px;
+    border: 1px solid var(--line-strong, #d3d7de);
+    border-left: 3px solid var(--warn, #b45309);
+    border-radius: 8px;
+    background: var(--surface-2, #f4f5f7);
+    color: var(--ink-2, #4a4f5a);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  mjx-container[jax="CHTML"][display="true"] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 0;
+  }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'none'
+    },
+    options: {
+      // 跳过代码块，避免把代码里的 $ 当公式
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     }
-  });
+  };
+</script>
+<script>
+  (function () {
+    var SOURCES = [
+      'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js',
+      'https://cdn.staticfile.org/mathjax/3.2.2/es5/tex-mml-chtml.js',
+      'https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js'
+    ];
+    var idx = 0;
+
+    function loaded() {
+      return !!(window.MathJax && window.MathJax.startup && window.MathJax.startup.document);
+    }
+
+    function warn() {
+      if (document.querySelector('.mathjax-fallback-tip')) return;
+      var tip = document.createElement('p');
+      tip.className = 'mathjax-fallback-tip';
+      tip.textContent = '公式渲染库（MathJax）加载失败：请检查网络后刷新页面。';
+      var main = document.querySelector('.post-content') || document.querySelector('main');
+      if (main) main.insertBefore(tip, main.firstChild);
+    }
+
+    function tryNext() {
+      if (idx >= SOURCES.length) { if (!loaded()) warn(); return; }
+      var s = document.createElement('script');
+      var done = false;
+      var timer = setTimeout(function () {
+        if (done) return;
+        done = true;
+        if (!loaded()) tryNext();
+      }, 6500);
+
+      s.src = SOURCES[idx++];
+      s.async = true;
+      s.onload = function () { done = true; clearTimeout(timer); };
+      s.onerror = function () {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+        tryNext();
+      };
+      document.head.appendChild(s);
+    }
+
+    tryNext();
+  })();
 </script>

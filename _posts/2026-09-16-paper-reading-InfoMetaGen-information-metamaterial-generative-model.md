@@ -4,6 +4,11 @@ title: "[论文阅读] 信息超材料设计的生成模型 InfoMetaGen"
 date: 2026-09-16 15:15:49 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [机器学习设计, 超表面与超材料]
+keywords: [扩散模型, 功能适配器, 全息编码, 逆设计]
+summary: "扩散预训练加轻量功能适配器迁移到信息超材料，统一超原子与非均匀编码阵列设计，全息任务耗时降三个数量级。"
+cover: /assets/posts_figs/paper-reading-InfoMetaGen-information-metamaterial-generative-model/fig_p03_01.png
 ---
 
 # [论文阅读] 信息超材料设计的生成模型 InfoMetaGen

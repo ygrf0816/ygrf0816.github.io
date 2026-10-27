@@ -1,10 +1,7 @@
 ---
-layout: page
-title: Learning
+layout: category
+title: 学习
 permalink: /Learning/
+description: 学习类文章：原理学习、课程笔记、操作笔记与工具使用记录。
+category: Learning
 ---
-
-{% for post in site.categories.Learning %}
-   [{{ post.title }}]({{ post.url }})
-  *发表于 {{ post.date | date: "%Y-%m-%d" }}*
-{% endfor %}

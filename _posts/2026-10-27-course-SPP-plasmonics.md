@@ -4,6 +4,11 @@ title: "[课程笔记] 表面等离激元极化激元（SPPs）：从 Drude 模�
 date: 2026-10-27 16:10:00 +0800
 categories: Learning
 mathjax: true
+type: 课程笔记
+tags: [等离激元, 色散模型]
+keywords: [Drude模型, ATR棱镜, 光栅耦合, 亚波长光刻]
+summary: "系统推导Drude模型与单界面SPP色散关系，覆盖动量失配的三种激发方式与SPP干涉光刻应用，补齐课件跳过的代数步骤。"
+cover: /assets/posts_figs/course-SPP-plasmonics/fig01_geometry.png
 ---
 
 # [课程笔记] 表面等离激元极化激元（SPPs）：从 Drude 模型到亚波长光刻

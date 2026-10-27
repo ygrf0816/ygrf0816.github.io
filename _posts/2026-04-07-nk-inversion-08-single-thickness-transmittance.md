@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（08）：从单一厚度�
 date: 2026-04-07 19:10:38 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [单厚度透射谱, 联立优化, n、k、d反演]
+series: nk-inversion
+series_order: 8
+summary: "仅用单一厚度样品透射谱联立优化，同时确定薄膜折射率、消光系数与厚度，避免多样品制备需求。"
+cover: /assets/posts_figs/nk-inversion-08-single-thickness-transmittance/fig_p02_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（08）：从单一厚度透射谱测定薄膜光学常数

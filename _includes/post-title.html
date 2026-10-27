@@ -1,0 +1,16 @@
+{%- comment -%}
+  展示层标题去冗余（polish E）：文章标题形如「[论文阅读] xxx」，卡片/列表已有 type 徽章，
+  故展示层剥掉开头的 [xxx] 前缀。规则：title 以 "[" 开头且含 "]"，取最后一个 "]" 之后并 strip；
+  否则原样。front matter 的 title 不动，SEO/RSS/og（head.html 的 jekyll-seo-tag）继续用原始 title。
+  用法：
+    {%- capture clean_title -%}{% include post-title.html title=xxx.title %}{%- endcapture -%}
+    {{ clean_title | escape }}
+  （Liquid 4.0.4 没有 include 过滤器，必须用 capture + include 标签）
+{%- endcomment -%}
+{%- assign raw = include.title | default: "" -%}
+{%- assign display = raw -%}
+{%- if raw contains "[" and raw contains "]" -%}
+  {%- assign parts = raw | split: "]" -%}
+  {%- assign display = parts.last | strip -%}
+{%- endif -%}
+{{ display }}

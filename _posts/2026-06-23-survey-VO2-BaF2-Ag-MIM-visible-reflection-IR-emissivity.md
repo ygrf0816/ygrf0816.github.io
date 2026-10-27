@@ -4,6 +4,10 @@ title: "[专题调研] VO₂/BaF₂/Ag MIM 超表面：可见光高反射与中�
 date: 2026-06-23 15:19:02 +0800
 categories: Project
 mathjax: true
+type: 专题调研
+tags: [相变材料, 超表面与超材料, 热辐射调控]
+keywords: [MIM腔, DBR, HCG, TCO, 发射率]
+summary: "诊断VO?/BaF?/Ag MIM可见光吸收根源，比较DBR、HCG光栅与TCO等反射增强方案，给出兼顾可见高反与中红外动态发射率的路径。"
 ---
 
 # [专题调研] VO₂/BaF₂/Ag MIM 超表面：可见光高反射与中红外动态发射率兼容方案

@@ -1,0 +1,181 @@
+/* 卡片封面 / 文章头图（代理 G2 负责） */
+
+/* 通用：占位渐变（亮色）+ 斜纹网点叠层 */
+.cover {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--cover-color, #3a5fcd) 22%, var(--surface)),
+      var(--surface-2)
+    );
+}
+
+html[data-theme="dark"] .cover {
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--cover-color, #3a5fcd) 14%, var(--surface)),
+      var(--surface-2)
+    );
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 3px,
+      color-mix(in srgb, var(--cover-color, #3a5fcd) 5%, transparent) 3px,
+      color-mix(in srgb, var(--cover-color, #3a5fcd) 5%, transparent) 4px
+    );
+}
+
+.cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  z-index: 1;
+  text-align: center;
+}
+
+/* ---- 卡片封面：贴卡片顶部、与卡片同宽、上圆角、固定 1200/560 等高 ---- */
+.cover--card {
+  aspect-ratio: 1200 / 560;
+  margin: -18px -20px 14px; /* 抵消 .post-card 的 padding，封面贴顶贴边 */
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* 卡片内容区与封面衔接：封面已贴顶，card-top 不再额外加顶部间距 */
+.post-card .card-top { margin-top: 0; }
+
+/* 卡片标签行固定占位：min-height 保证无标签卡片与有标签卡片等高 */
+.post-card .card-tags {
+  min-height: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: auto;
+}
+
+/* 让 card-link 撑满卡片全高，使同行卡片视觉等高（grid stretch 由外层保证） */
+.post-card { display: flex; flex-direction: column; }
+.post-card .card-link { flex: 1; display: flex; flex-direction: column; }
+
+.cover--card .cover-img {
+  transition: transform 0.4s ease;
+}
+
+.post-card:hover .cover--card .cover-img {
+  transform: scale(1.03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cover--card .cover-img {
+    transition: none;
+    transform: none !important;
+  }
+}
+
+/* 占位文字（暗色模式跟随变量自动降亮度） */
+.cover-fallback-type {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--cover-color, #3a5fcd) 82%, var(--ink-2));
+}
+
+html[data-theme="dark"] .cover-fallback-type {
+  color: color-mix(in srgb, var(--cover-color, #3a5fcd) 75%, var(--ink-2));
+}
+
+.cover-fallback-word {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.15;
+  color: color-mix(in srgb, var(--cover-color, #3a5fcd) 90%, var(--ink));
+  overflow-wrap: anywhere;
+}
+
+html[data-theme="dark"] .cover-fallback-word {
+  color: color-mix(in srgb, var(--cover-color, #3a5fcd) 85%, var(--ink));
+}
+
+.cover--card .cover-fallback-type {
+  font-size: clamp(10px, 0.85vw, 12px);
+}
+
+.cover--card .cover-fallback-word {
+  font-size: clamp(14px, 1.6vw, 20px);
+}
+
+.cover--hero .cover-fallback-type {
+  font-size: clamp(12px, 1vw, 14px);
+}
+
+.cover--hero .cover-fallback-word {
+  font-size: clamp(22px, 2.6vw, 40px);
+}
+
+/* ---- 文章页头图（hero）：上限 320px，重点偏上 ---- */
+.cover--hero {
+  aspect-ratio: 1200 / 420;
+  max-height: 320px;
+  border-radius: var(--radius-lg);
+  margin: 20px 0 8px;
+  overflow: hidden;
+}
+
+.cover--hero .cover-img {
+  object-position: center 35%;
+}
+
+.cover--hero .cover-fallback-type {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: color-mix(in srgb, var(--cover-color, #3a5fcd) 75%, var(--ink-3));
+}
+
+.cover--hero .cover-fallback-word {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 40px);
+  line-height: 1.2;
+  color: color-mix(in srgb, var(--cover-color, #3a5fcd) 85%, var(--ink));
+}
+
+html[data-theme="dark"] .cover--hero .cover-fallback-word {
+  color: color-mix(in srgb, var(--cover-color, #3a5fcd) 80%, var(--ink));
+}
+
+/* 窄屏：hero 改 16/9，仍受 320px 上限约束 */
+@media (max-width: 720px) {
+  .cover--hero {
+    aspect-ratio: 16 / 9;
+    max-height: 320px;
+    margin: 16px 0 6px;
+  }
+}

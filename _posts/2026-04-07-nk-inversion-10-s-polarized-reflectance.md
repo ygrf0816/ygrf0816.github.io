@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（10）：利用 s 偏振�
 date: 2026-04-07 19:11:25 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [s偏振反射率, 多角度测量, 界面简化]
+series: nk-inversion
+series_order: 10
+summary: "仅用s偏振反射率的多角度测量确定薄膜折射率与厚度，利用其界面行为更简单简化测量系统。"
+cover: /assets/posts_figs/nk-inversion-10-s-polarized-reflectance/fig_p02_cap01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（10）：利用 s 偏振反射率同时测量薄膜折射率和厚度

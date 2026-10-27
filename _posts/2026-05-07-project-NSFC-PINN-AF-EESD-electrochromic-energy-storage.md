@@ -4,6 +4,10 @@ title: "[项目研究] 国自然申请书阅读笔记：PINN 驱动 WO₃/MoOHCF
 date: 2026-05-07 11:16:29 +0800
 categories: Project
 mathjax: true
+type: 项目研究
+tags: [机器学习设计, 光伏与能源器件, 科研工作流]
+keywords: [PINN, WO₃, MoOHCF, EESD, 电致变色]
+summary: "阅读国自然申请书，梳理用PINN三步法实现全季候四模态电致变色储能器件的逆向设计与性能预测，并分析变色储能调温三功能耦合机理。"
 ---
 
 # [项目研究] 国自然申请书阅读笔记：PINN 驱动 WO₃/MoOHCF 全季候变色储能器件

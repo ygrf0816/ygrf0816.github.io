@@ -4,6 +4,11 @@ title: "[论文阅读] 基于 Conway 图案的机器学习驱动红外超表面�
 date: 2026-04-11 16:07:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [超表面与超材料, 机器学习设计]
+keywords: [Conway图案, PSO, MIM腔, 频谱选择性, PCCP]
+summary: "基于Conway图案与正向DNN、PSO逆设计红外超表面频谱选择性，实现大气窗口选择性发射，服务辐射制冷与太空热管理应用。"
+cover: /assets/posts_figs/2026-04-11-paper-ML-Conway-patterns/image-20260411134458616.png
 ---
 
 # [论文阅读] 基于 Conway 图案的机器学习驱动红外超表面频谱选择性设计

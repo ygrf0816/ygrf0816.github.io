@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（21）：Swanepoel 方法
 date: 2026-04-07 19:15:06 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [Swanepoel 1983, 干涉极大, 包络公式, k-d 求解, 奠基工作]
+series: nk-inversion
+series_order: 21
+summary: "回顾Swanepoel 1983奠基工作，给出由单一透射谱包络同时求n、k、d的完整公式体系与误差分析。"
+cover: /assets/posts_figs/nk-inversion-21-swanepoel-1983/fig_p02_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（21）：Swanepoel 方法——薄膜厚度和光学常数的测定（1983 奠基工作）

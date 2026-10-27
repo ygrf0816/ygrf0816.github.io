@@ -4,6 +4,11 @@ title: "[项目研究] 序列数据升维技术调研——格拉姆角场（GAS
 date: 2026-03-30 15:36:00 +0800
 categories: Project
 mathjax: true
+type: 项目研究
+tags: [机器学习设计, 科研工作流]
+keywords: [GASF, GADF, 马尔可夫转移场, 递归图, TimesNet, pyts]
+summary: "调研一维时间序列升维为二维图像的技术族，重点分析格拉姆角场的极坐标编码与可逆性，并横向对比递归图、时频图与周期重塑方法。"
+cover: /assets/posts_figs/2026-03-30-project-1D-to-2D-encoding/image-20260330143652141.png
 ---
 
 # 时间序列数据升维技术研究笔记

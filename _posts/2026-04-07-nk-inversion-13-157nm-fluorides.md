@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（13）：157 nm 附近 Ca
 date: 2026-04-07 19:12:13 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [CaF₂, SrF₂, BaF₂, LiF, 157 nm光刻]
+series: nk-inversion
+series_order: 13
+summary: "用干涉法精确测定157 nm处CaF₂、SrF₂、BaF₂、LiF的绝对折射率与温度系数，服务光刻光学设计。"
+cover: /assets/posts_figs/nk-inversion-13-157nm-fluorides/fig_p02_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（13）：157 nm 附近 CaF₂、SrF₂、BaF₂ 与 LiF 的绝对折射率与温度系数

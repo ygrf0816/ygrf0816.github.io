@@ -4,6 +4,10 @@ title: "[专题调研] 仅用 R/T 曲线反演透明介质薄膜光学常数 (n,
 date: 2026-04-07 10:31:43 +0800
 categories: Project
 mathjax: true
+type: 专题调研
+tags: [光学常数反演, 光谱表征]
+keywords: [Swanepoel, 包络法, CMA-ES, BaF₂, HfO₂]
+summary: "系统梳理仅用R、T光谱反演薄膜n、k、d参数的方法，涵盖解析包络、优化拟合、深度学习等路线，并给出推荐研究流程。"
 ---
 
 # [专题调研] 仅用 R/T 曲线反演透明介质薄膜光学常数 (n, k, d) 研究综述

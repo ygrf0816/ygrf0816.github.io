@@ -1,0 +1,9 @@
+{%- assign p = include.post | default: page -%}
+<div class="post-meta">
+  <time class="post-date" datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: "%Y-%m-%d" }}</time>
+  {%- if p.categories -%}
+    {%- assign cat = p.categories | first -%}
+    <span class="post-cat-sep" aria-hidden="true">·</span>
+    <a class="post-cat" href="{{ "/" | append: cat | append: "/" | relative_url }}">{{ cat }}</a>
+  {%- endif -%}
+</div>

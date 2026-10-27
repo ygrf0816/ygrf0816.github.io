@@ -4,6 +4,10 @@ title: "[专题调研] 222 nm 超窄带滤光片：超表面路线深度分析"
 date: 2026-07-24 13:47:18 +0800
 categories: Project
 mathjax: true
+type: 专题调研
+tags: [超表面与超材料, 光学设计]
+keywords: [Mie共振, BIC, AlN, Damascene工艺]
+summary: "深挖超表面窄带滤波路线，论证Mie共振谷加BIC透射峰可绕开多层膜吸收累积矛盾，给出分阶段验证方案。"
 ---
 
 # [专题调研] 222 nm 超窄带滤光片：超表面路线深度分析

@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（19）：Swanepoel 方法
 date: 2026-04-07 19:13:50 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 机器学习设计]
+keywords: [Swanepoel 包络, 自动检测, 物理约束, swanpy, 包络提取]
+series: nk-inversion
+series_order: 19
+summary: "提出Swanepoel包络线自动检测算法并开源swanpy包，用物理约束提升透射谱包络提取精度。"
+cover: /assets/posts_figs/nk-inversion-19-swanepoel-enhanced/fig_p03_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（19）：Swanepoel 方法的增强：薄膜透射光谱的精确包络检测

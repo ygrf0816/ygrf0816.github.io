@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（07）：从干涉条纹�
 date: 2026-04-07 19:10:37 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [Harrick法, 干涉条纹, 折射率测厚]
+series: nk-inversion
+series_order: 7
+summary: "按Harrick法从薄膜干涉条纹提取折射率与厚度，给出经典公式和完整条纹图案下的测量条件。"
+cover: /assets/posts_figs/nk-inversion-07-harrick-interference-fringes/fig_p02_cap01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（07）：从干涉条纹确定折射率和薄膜厚度（Harrick 法）

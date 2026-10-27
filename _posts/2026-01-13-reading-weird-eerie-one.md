@@ -4,6 +4,11 @@ title: "[读书笔记] 《怪异与阴森》 （1）怪异篇"
 date: 2026-01-12 21:14:00 +0800
 categories: Reading
 mathjax: true
+type: 读书笔记
+tags: [读书随笔, 科研工作流]
+keywords: [弗洛伊德, 暗怖, 怪异阴森, 恐怖文化, SCP]
+summary: "读《怪异与阴森》怪异篇，梳理弗洛伊德暗怖概念下怪异与阴森两种感受的区别，延伸到恐怖题材作品与资本批判。"
+cover: /assets/posts_figs/2026-01-13-reading-weird-eerie1/s34955759.jpg
 ---
 
 # 暗怖、怪异与阴森

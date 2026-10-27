@@ -4,6 +4,10 @@ title: "[专题综述] 薄膜光学常数与厚度 (n, k, d) 反演方法综合�
 date: 2026-04-07 19:16:02 +0800
 categories: Learning
 mathjax: true
+type: 专题综述
+tags: [光学常数反演, 光学设计]
+keywords: [Swanepoel, Minkov, 椭偏仪, 唯一性, CMA-ES]
+summary: "基于22篇薄膜光学特性论文综评，梳理并深度评价反演方法的歧义、仪器依赖与智能化程度，给出方法选择指南。"
 ---
 
 # [专题综述] 薄膜光学常数与厚度 (n, k, d) 反演方法综合评述

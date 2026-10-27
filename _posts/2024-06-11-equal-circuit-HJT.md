@@ -4,6 +4,11 @@ title: "[论文阅读] 一种类HJT电池的新等效电路模型与深度学习
 date: 2024-06-11 17:43:33 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光伏与能源器件, 机器学习设计]
+keywords: [HJT, 等效电路模型, S型畸变, 隧穿复合, TCAD, 卷积网络]
+summary: "用含隧穿复合的七参数等效电路加一维卷积代理模型拟合HJT类电池的S型畸变IV曲线，替代TCAD反复仿真。"
+cover: /assets/posts_figs/2024-06-11-equal-circuit-HJT/image-20240612162647026.png
 ---
 
 原论文地址：

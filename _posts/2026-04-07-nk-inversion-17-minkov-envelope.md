@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（17）：利用透反射�
 date: 2026-04-07 19:13:01 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [Minkov 法, 透射极小, 反射极大, 包络线误差, 组合精度]
+series: nk-inversion
+series_order: 17
+summary: "用透射谱极小与反射谱极大的包络线组合精确计算n、k、d，并系统评估各极值组合的精度与误差。"
+cover: /assets/posts_figs/nk-inversion-17-minkov-envelope/fig_p01_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（17）：利用透反射谱包络线精确计算薄膜光学常数（Minkov 法）

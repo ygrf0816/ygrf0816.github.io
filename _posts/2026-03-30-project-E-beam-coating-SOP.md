@@ -4,6 +4,11 @@ title: "[操作笔记] 电子束蒸发镀膜SOP"
 date: 2026-04-3 19:23:00 +0800
 categories: Project
 mathjax: true
+type: 操作笔记
+tags: [薄膜工艺, 光谱表征]
+keywords: [电子束蒸发, 高真空, 坩埚, 速流, 膜厚控制]
+summary: "记录电子束蒸发镀膜机从充气、抽真空、对准到开束、膜厚控制到复位的完整SOP，附关键参数与顺序速查卡。"
+cover: /assets/posts_figs/2026-03-30-project-E-beam-coating-SOP/image-20260403183221294.png
 ---
 
 # [操作笔记] 电子束蒸发镀膜SOP

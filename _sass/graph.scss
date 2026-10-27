@@ -1,0 +1,448 @@
+/* ============================================================
+   知识图谱页全部样式（代理 D）
+   设计令牌复用 CONTRACT.md §2；颜色/圆角/字号一律走 CSS 变量，
+   节点颜色在 JS 里从 taxonomy color 取值（画布绘制，不适用此规则）。
+   本文件为交付源文件；合并时整份并入 main.scss 的 [C:inline] 区块
+   （替换原图谱段；搜索页样式段保留）。
+   ============================================================ */
+
+/* ---------- 宽容器突破：图谱页撑满视口并居中（≤1200px） ----------
+   .post-content 默认 max-width:720px（A 的 main.scss），.wrap-wide 默认 1140px。
+   逐层放开后，.graph-page 用 100vw + calc(50% - 50vw) 突破到全视口，
+   再 max-width:1200px + margin auto 居中；宽度始终随视口变化（无侧边滚动条副作用）。 */
+main.site-main.page.graph-view > article.page {
+  max-width: none;
+  width: 100%;
+}
+main.site-main.page.graph-view > article.page > .post-header,
+main.site-main.page.graph-view > article.page > .post-content {
+  max-width: none;
+  width: 100%;
+}
+/* 隐藏 page.html 自带的重复 h1（标题已移入 .graph-head）；限定 .graph-view，别影响 about/tags/archive */
+main.site-main.page.graph-view > article.page > .post-header { display: none; }
+/* .graph-page：更高特异度覆盖 main.scss 旧图谱段（grid/min-height:100vh-200px 等），
+   用 100vw + calc(50% - 50vw) 突破到全视口，max-width 1200px 居中；无 grid（改由 .graph-body 承载）。 */
+main.site-main.page.graph-view .graph-page {
+  display: block;
+  width: 100vw;
+  margin: 0 auto;
+  margin-left: calc(50% - 50vw);
+  max-width: 1200px;
+  min-height: 0;
+  padding: 4px 0 8px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ---------- 页头：标题 + 说明 + 统计 ---------- */
+.graph-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0 14px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.graph-title {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.graph-desc {
+  font-size: 14px;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 760px;
+  line-height: 1.6;
+}
+.graph-head-stats {
+  font-size: 13px;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.graph-head-stats strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- 工具栏 ---------- */
+.graph-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.graph-toolbar .tool-btn {
+  width: 34px; height: 34px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink-2);
+  border-radius: var(--radius);
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  font-family: var(--font-sans);
+}
+.graph-toolbar .tool-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.graph-toolbar .tool-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.graph-search {
+  position: relative;
+  flex: 1;
+  min-width: 170px;
+  margin-left: 4px;
+}
+.graph-search input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 7px 14px;
+  font-size: 13px;
+  outline: none;
+  font-family: var(--font-sans);
+}
+.graph-search input::placeholder { color: var(--ink-3); }
+.graph-search input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ---------- 主区：画布 + 右栏面板 ---------- */
+.graph-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 14px;
+  align-items: start;
+  padding-bottom: 32px;
+}
+.graph-stage {
+  position: relative;
+  height: calc(100vh - 300px);
+  min-height: 520px;
+  max-height: 820px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  isolation: isolate;
+}
+#graph-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  touch-action: none;
+  outline: none;
+}
+#graph-canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+#graph-canvas.is-grabbing { cursor: grabbing; }
+#graph-canvas.has-node { cursor: pointer; }
+.graph-empty,
+.graph-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 5;
+  background: var(--surface);
+  color: var(--ink-2);
+  font-size: 14px;
+  text-align: center;
+  padding: 24px;
+}
+.graph-error { color: var(--warn); }
+.graph-error .ge-title { font-weight: 600; font-size: 16px; }
+.graph-error button {
+  border: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 6px 16px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+.graph-error button:hover { border-color: var(--accent); color: var(--accent-ink); }
+
+/* ---------- 浮层：统计（左上）/ 图例（左下）/ 帮助（底部居中） ---------- */
+.graph-stats {
+  position: absolute;
+  top: 12px; left: 12px;
+  z-index: 4;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+.graph-stats strong { color: var(--ink); font-weight: 600; }
+.graph-legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 8px;
+  font-size: 12px;
+}
+.gl-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-2);
+  white-space: nowrap;
+  border: none;
+  background: none;
+  padding: 2px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: var(--font-sans);
+  text-align: left;
+}
+.gl-item:hover { background: var(--surface-2); color: var(--ink); }
+.gl-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.gl-item.is-active { background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; }
+.gl-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.gl-count { color: var(--ink-3); font-size: 11px; margin-left: 2px; }
+
+/* ---------- 右侧栏：详情面板 + 图例 + 操作说明（整列独立滚动） ---------- */
+.graph-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 76px;
+  align-self: start;
+  width: 320px;
+  max-height: calc(100vh - 96px);
+  overflow: auto;
+  padding-right: 2px;
+}
+.graph-card {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 12px 14px;
+}
+.graph-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  margin: 0 0 8px;
+}
+details.graph-card > summary.graph-card-title {
+  cursor: pointer;
+  margin: 0;
+  list-style: none;
+}
+details.graph-card > summary.graph-card-title::-webkit-details-marker { display: none; }
+details.graph-card > summary.graph-card-title::before { content: "▸ "; color: var(--ink-3); }
+details.graph-card[open] > summary.graph-card-title::before { content: "▾ "; }
+.graph-help-text {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--ink-2);
+  margin: 8px 0 0;
+}
+.graph-help-text code {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  background: var(--surface-2);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+.graph-panel {
+  width: auto;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.graph-panel[hidden] { display: none; }
+.graph-panel-body { padding: 16px 18px; }
+.gp-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin: 0 0 4px;
+}
+.gp-title {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.4;
+}
+.gp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.gm-item {
+  font-size: 12px;
+  color: var(--ink-2);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 2px 9px;
+}
+.gm-item strong { color: var(--ink); font-weight: 600; }
+.gp-summary {
+  font-size: 13.5px;
+  color: var(--ink-2);
+  line-height: 1.65;
+  margin: 0 0 12px;
+}
+.gp-keywords {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin: 0 0 14px;
+  line-height: 1.7;
+}
+.gp-keywords strong { color: var(--ink-2); font-weight: 600; margin-right: 6px; }
+.gp-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.gp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+.gp-tag:hover { border-color: var(--accent); color: var(--accent-ink); }
+.gp-tag .gp-tag-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.gp-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: var(--surface);
+  border-radius: var(--radius);
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+.gp-cta:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+/* 引导态（未选中节点时） */
+.gp-empty { color: var(--ink-2); font-size: 13.5px; line-height: 1.7; }
+.gp-empty p { margin: 0 0 10px; }
+.gp-expanded-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+  margin: 14px 0 8px;
+  letter-spacing: 0.03em;
+}
+.gp-expanded {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.gp-expanded li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 7px 10px;
+  background: var(--surface-2);
+}
+.gp-expanded li button {
+  margin-left: auto;
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--ink-3);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 11.5px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+.gp-expanded li button:hover { color: var(--warn); border-color: var(--warn); }
+.gp-none { font-size: 12.5px; color: var(--ink-3); }
+
+/* ---------- 窄屏（<900px）：单列；画布 62vh；面板变底部抽屉 ---------- */
+@media (max-width: 899px) {
+  .graph-head { padding-bottom: 10px; margin-bottom: 10px; }
+  .graph-title { font-size: 1.4rem; }
+  .graph-body { grid-template-columns: 1fr; gap: 10px; }
+  .graph-stage {
+    height: 62vh;
+    min-height: 380px;
+    max-height: none;
+  }
+.graph-side {
+  position: static;
+  width: auto;
+  max-height: none;
+  overflow: visible;
+}
+  .graph-legend {
+  position: static;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 6px;
+  width: auto;
+  max-height: none;
+  border: none;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  overflow: visible;
+    max-width: calc(100% - 200px);
+    max-height: 30%;
+  }
+  .graph-stats { top: 10px; left: 10px; }
+}
+
+/* ---------- 减少动态效果 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .graph-toolbar .tool-btn, .gl-item, .gp-tag, .graph-error button {
+    transition: none;
+  }
+}

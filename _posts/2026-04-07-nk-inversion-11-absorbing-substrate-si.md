@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（11）：吸收基底（S
 date: 2026-04-07 19:11:25 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [Si吸收基底, 正入射反射率, n、k、d联立测定]
+series: nk-inversion
+series_order: 11
+summary: "针对硅等吸收基底建立新的分析框架，从单一正入射反射率同时测定薄膜折射率、消光系数与厚度。"
+cover: /assets/posts_figs/nk-inversion-11-absorbing-substrate-si/fig_p02_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（11）：吸收基底（Si）上薄膜光学常数和厚度的测定

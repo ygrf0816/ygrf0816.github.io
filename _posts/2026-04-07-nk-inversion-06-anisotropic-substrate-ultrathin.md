@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（06）：利用各向异�
 date: 2026-04-07 19:09:36 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 椭偏测量, 光谱表征]
+keywords: [各向异性基底, 超薄膜, n-k解耦, 二维材料]
+series: nk-inversion
+series_order: 6
+summary: "利用各向异性基底打破n、k耦合，使椭偏仪对小于1nm超薄膜同时无歧义测定折射率、消光系数与厚度。"
+cover: /assets/posts_figs/nk-inversion-06-anisotropic-substrate-ultrathin/fig_p03_01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（06）：利用各向异性基底确定超薄膜的 n、k 与厚度

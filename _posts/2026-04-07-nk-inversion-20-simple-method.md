@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（20）：薄膜光学常�
 date: 2026-04-07 19:15:06 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [Gupta 法, 反射率法, 单波法, 简化流程, 实用化]
+series: nk-inversion
+series_order: 20
+summary: "提出Gupta简易反射率法，用少数波长的反射数据即可估算薄膜厚度与n、k，便于现场使用。"
+cover: /assets/posts_figs/nk-inversion-20-simple-method/fig_p02_cap01.png
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（20）：薄膜光学常数测定的简易方法（Gupta 法）

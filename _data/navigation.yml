@@ -1,0 +1,17 @@
+# 顶部导航（代理 A 维护；顺序即展示顺序）
+- title: 首页
+  url: /
+- title: 学习
+  url: /Learning/
+- title: 项目
+  url: /Project/
+- title: 阅读
+  url: /Reading/
+- title: 标签
+  url: /tags/
+- title: 图谱
+  url: /graph/
+- title: 归档
+  url: /archive/
+- title: 关于
+  url: /about/

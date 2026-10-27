@@ -4,6 +4,11 @@ title: "[论文阅读] GST 相变材料的光学常数测量"
 date: 2026-03-25 19:56:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [相变材料, 光学常数反演]
+keywords: [GST, Ge2Sb2Te5, 介电函数模型, EMA, Avrami, 激活能]
+summary: "系统测量GST非晶态、晶态与中间态的光学常数，用EMA与Avrami方程刻画相变过程中光学常数的连续演化并估算激活能。"
+cover: /assets/posts_figs/2026-03-25-paper-reading-GST-property/image-20260325193300090.png
 ---
 
 # [论文阅读] GST 相变材料的光学常数测量

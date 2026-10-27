@@ -4,6 +4,11 @@ title: "[技术] 如何利用ssh和xrdp插件与工作站进行远程连接"
 date: 2026-01-12 21:11:00 +0800
 categories: Learning
 mathjax: true
+type: 技术笔记
+tags: [科研工作流, 光学仿真]
+keywords: [SSH, Xshell, Xftp, VNC, Xrdp]
+summary: "记录用SSH加FTP、VNC与Xrdp三条路径连接实验室远程工作站的完整配置步骤，涵盖防火墙放行与软件设置。"
+cover: /assets/posts_figs/2026-01-12-how2-remote-connect-ws/image-20260112203704873.png
 ---
 
 这几天在帮同办公室的师弟解决工作站的远控问题，简单记录一下解决过程。

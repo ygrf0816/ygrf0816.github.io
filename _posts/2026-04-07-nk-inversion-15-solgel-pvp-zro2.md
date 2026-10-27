@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（15）：溶胶-凝胶 PV
 date: 2026-04-07 19:13:01 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征, 薄膜工艺]
+keywords: [PVP/ZrO₂, Urbach 尾, 透射谱拟合, 溶胶凝胶法]
+series: nk-inversion
+series_order: 15
+summary: "从溶胶凝胶PVP/ZrO₂薄膜透射谱提取n、k、d，并考察Urbach尾对弱吸收区折射率提取的影响。"
+cover: /assets/posts_figs/nk-inversion-15-solgel-pvp-zro2/fig_p04_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（15）：溶胶-凝胶 PVP/ZrO₂ 薄膜的光学常数测定

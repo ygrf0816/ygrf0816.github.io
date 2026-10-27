@@ -4,6 +4,11 @@ title: "[论文阅读] 机器学习驱动的椭偏测量"
 date: 2026-03-24 15:21:00 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [椭偏测量, 机器学习设计]
+keywords: [SUNDIAL, Psi Delta, 残差U模块, 在线迭代推理, TiO2]
+summary: "解读机器学习驱动椭偏测量论文，说明堆叠残差U模块的两阶段离线加在线策略如何加速Psi Delta到nk d的逆问题求解。"
+cover: /assets/posts_figs/2026-03-24-paper-reading-ML-ellipsometry/image-20260324134814037.png
 ---
 
 # [论文阅读] 机器学习驱动的椭偏测量

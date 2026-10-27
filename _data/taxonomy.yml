@@ -1,0 +1,97 @@
+# 一级标签字典：全站唯一来源（标签页、卡片、图谱均读这里）
+# name 必须与 _posts 里的 tags 字面完全一致
+- name: 光学常数反演
+  slug: optical-constants-inversion
+  color: "#3a5fcd"
+  short: 反演
+  desc: 由反射/透射/椭偏数据反推薄膜的 n、k、d：包络线法、Swanepoel、Minkov、CMA-ES、双厚度法，以及多解与可辨识性。
+
+- name: 光谱表征
+  slug: spectrophotometry
+  color: "#0f766e"
+  short: 光谱
+  desc: 透射谱、反射谱、偏振反射、角度分辨等测量方法与装置配置。
+
+- name: 椭偏测量
+  slug: ellipsometry
+  color: "#6d28d9"
+  short: 椭偏
+  desc: 椭偏仪原理（旋转检偏器、Psi/Delta）、光学模型拟合与机器学习辅助反演。
+
+- name: 色散模型
+  slug: dispersion-model
+  color: "#be185d"
+  short: 色散
+  desc: Tauc-Lorentz、Forouhi-Bloomer、Urbach 尾、通用色散模型等介电函数参数化方案。
+
+- name: 薄膜工艺
+  slug: thin-film-fabrication
+  color: "#92400e"
+  short: 工艺
+  desc: 电子束蒸发、溶胶-凝胶、镀膜 SOP、膜厚与均匀性控制等制备环节。
+
+- name: 相变材料
+  slug: phase-change-materials
+  color: "#dc2626"
+  short: 相变
+  desc: VO₂、GST 等相变材料的光学/电学性质、相变调控与器件实现。
+
+- name: 热辐射调控
+  slug: thermal-radiation
+  color: "#ea580c"
+  short: 热辐射
+  desc: 发射率工程、辐射制冷、基尔霍夫定律的突破、动态热辐射与热管理。
+
+- name: 超表面与超材料
+  slug: metasurface
+  color: "#0891b2"
+  short: 超构
+  desc: 超表面/超材料/频率选择表面/MIM 腔/滤光片/超散射等人工微结构设计。
+
+- name: 机器学习设计
+  slug: ml-for-design
+  color: "#4d7c0f"
+  short: 机器学习
+  desc: 深度学习、生成模型、PINN、LLM/VLM、域适应与数据驱动的逆向设计。
+
+- name: 光学仿真
+  slug: optical-simulation
+  color: "#475569"
+  short: 仿真
+  desc: LightTools、FDTD/RCWA、传输矩阵等仿真工具与建模方法。
+
+- name: 光学设计
+  slug: optical-design
+  color: "#0e7490"
+  short: 光学设计
+  desc: 光学系统、膜系、滤光片与镜头的指标分解与方案设计。
+
+- name: 光伏与能源器件
+  slug: photovoltaics-energy
+  color: "#a16207"
+  short: 光伏
+  desc: HJT/钙钛矿太阳电池、电致变色储能等器件的能带、组分与性能工程。
+
+- name: 等离激元
+  slug: plasmonics
+  color: "#a21caf"
+  short: 等离激元
+  desc: 表面等离激元极化激元（SPP/LSP）的色散、耦合、激发方式与亚波长应用。
+
+- name: CAD 生成
+  slug: cad-generation
+  color: "#334155"
+  short: CAD
+  desc: 图纸/三视图到参数化 CAD 的序列生成，以及 VLM/智能体驱动的建模。
+
+- name: 科研工作流
+  slug: research-workflow
+  color: "#6b7280"
+  short: 工作流
+  desc: 远程工作站、SSH、数据预处理、工具链与项目调研的方法性记录。
+
+- name: 读书随笔
+  slug: book-notes
+  color: "#8b5e34"
+  short: 读书
+  desc: 非技术类读书笔记与延伸思考。

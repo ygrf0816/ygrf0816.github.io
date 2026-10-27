@@ -4,6 +4,11 @@ title: "[论文阅读] 基于多项式求根的双厚度透射率模型确定透
 date: 2026-04-07 11:16:01 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 光谱表征]
+keywords: [双厚度, 多项式求根, 衰减系数, 整数比平板, CaF₂ 算例]
+summary: "用厚度成整数比的两片平板透射率建立多项式并求根，直接解出n、k、α，含CaF₂标准算例验证。"
+cover: /assets/posts_figs/paper-reading-dual-thickness-transmittance-polynomial-root/fig_p03_cap01.png
 ---
 
 # [论文阅读] 基于多项式求根的双厚度透射率模型确定透明固体光学常数

@@ -1,0 +1,24 @@
+<div class="hero">
+  <div class="wrap-wide">
+    <h1 class="hero-title">{{ site.title | escape }}</h1>
+    <p class="hero-desc">{{ site.description | strip }}</p>
+    <div class="hero-stats" aria-label="站点统计">
+      <div class="stat">
+        <span class="stat-num">{{ site.posts.size }}</span>
+        <span class="stat-label">文章</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">{{ site.data.taxonomy.size }}</span>
+        <span class="stat-label">标签</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">{{ site.categories.size }}</span>
+        <span class="stat-label">分类</span>
+      </div>
+    </div>
+    <p class="hero-cta">
+      <a class="btn btn-primary" href="{{ "/graph/" | relative_url }}">浏览知识图谱</a>
+      <a class="btn" href="{{ "/tags/" | relative_url }}">研究主题</a>
+    </p>
+  </div>
+</div>

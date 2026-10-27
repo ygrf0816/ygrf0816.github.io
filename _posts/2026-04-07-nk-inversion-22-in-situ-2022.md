@@ -4,6 +4,13 @@ title: "[论文阅读] 薄膜光学常数反演速览（22）：薄膜光学常�
 date: 2026-04-07 19:15:06 +0800
 categories: Learning
 mathjax: true
+type: 论文阅读
+tags: [光学常数反演, 薄膜工艺]
+keywords: [原位测定, 近红外, Si、Ta₂O₅、SiO₂, 膜层反馈, 实时n k]
+series: nk-inversion
+series_order: 22
+summary: "建立沉积过程近红外原位n、k快速测定法，覆盖Si、Ta₂O₅、SiO₂样品并实现膜厚实时反馈。"
+cover: /assets/posts_figs/nk-inversion-22-in-situ-2022/fig_p03_01.jpeg
 ---
 
 # [论文阅读] 薄膜光学常数反演速览（22）：薄膜光学常数的原位测定方法（2022）
