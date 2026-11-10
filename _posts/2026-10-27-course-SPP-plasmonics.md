@@ -171,7 +171,7 @@ $$
 
 ### 1.3 突破口：把波矢做大
 
-既然瓶颈是"$|k|\le nk_0$"，那就去找一种**波矢可以超过 $nk_0$** 的电磁模式。
+既然瓶颈是"$\lvert k\rvert \le nk_0$"，那就去找一种**波矢可以超过 $nk_0$** 的电磁模式。
 
 **SPP 正好是**：它的传播常数 $\beta$（就是 $k_x$）满足 $\beta>k_0\sqrt{\varepsilon_2}$（第 5 节会证），而且场被紧紧约束在界面附近（1.5 节的倏逝场）。用它做干涉，条纹可以细到
 
@@ -1481,7 +1481,7 @@ $$
   <img src="/assets/posts_figs/course-SPP-plasmonics/fig14_modes.png" alt="图14 相位匹配图像" />
 </div>
 
-*图 14（重绘）**(a)** 满足 $|\vec\beta|=\beta_{sp}$ 的 $(i,j)$ 组合在波矢平面上落在一个圆上（虚线），本例 $\Lambda_x/\Lambda_y=200/350$ nm、$\lambda_{sp}=176$ nm 时正好 6 个；**(b)** 每个模式的激发幅度是偏振在该 $\vec\beta$ 上的投影*
+*图 14（重绘）**(a)** 满足 $\lvert \vec\beta\rvert =\beta_{sp}$ 的 $(i,j)$ 组合在波矢平面上落在一个圆上（虚线），本例 $\Lambda_x/\Lambda_y=200/350$ nm、$\lambda_{sp}=176$ nm 时正好 6 个；**(b)** 每个模式的激发幅度是偏振在该 $\vec\beta$ 上的投影*
 
 **为什么正好是 6 个**，可以直接验算：
 
