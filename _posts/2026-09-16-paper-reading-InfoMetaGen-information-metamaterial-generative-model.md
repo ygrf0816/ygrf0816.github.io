@@ -126,7 +126,7 @@ cover: /assets/posts_figs/paper-reading-InfoMetaGen-information-metamaterial-gen
 2. 写成二进制向量 $\mathbf{b} = (b_1, \cdots, b_n)$，$b_i \in \{0,1\}$，其中 $n = \lceil \log_2 K \rceil$；
 3. 映射到模拟比特：$a_i = 2b_i - 1$，$a_i \in \{-1, +1\}$；
 4. 于是 $d \mapsto \mathbf{a} = (a_1, \cdots, a_n) \in \{-1, +1\}^n$，可直接用标准连续扩散建模；
-5. 采样后阈值量化回二值：$\hat{b}_i = \mathbb{1}(\tilde{a}_i > 0)$，再解码为离散编码数字 $\hat{d}$。
+5. 采样后阈值量化回二值：$\hat{b}\_i = \mathbb{1}(\tilde{a}\_i > 0)$，再解码为离散编码数字 $\hat{d}$。
 
 > **为什么不直接做离散扩散？** 用 {−1,+1} 的连续表示，可以直接复用成熟的 DDPM/U-Net 实现；代价是采样后必须量化，这也是"生成随机性 → 需要批量筛选后处理"的根源之一。
 
@@ -431,7 +431,7 @@ $$\mathbf{C} = \mathrm{SiLU}\big(\mathrm{Conv}_{3\times3}(\mathrm{SiLU}(\mathrm{
 
 > **zero-init 的作用**：权重初始化为 0 → 微调起点时注入项恒为 0 → 底座行为与预训练时**完全一致**，训练从"预训练恒等映射"出发，逐步学会如何用条件去"推"生成方向。这就是 ControlNet 的经典技巧，保证不会在训练初期破坏预训练先验。
 
-**一个尚未写明的点**：从描述看，适配器的每层只有 Conv + SiLU + 下采样，**没有提到时间步嵌入**；而底座 U-Net 的残差块明确用 time embedding $\mathbf{t}_{emb}$ 做 scale & shift 调制（$\mathbf{t}_{emb} = [\beta_t, \sin\beta_t, \cos\beta_t]$ 加到噪声特征图上）。若适配器确实不含时间步条件，则它在全部去噪步上**输出同一组条件特征**——这一点 SI 未明说，需要看代码确认。
+**一个尚未写明的点**：从描述看，适配器的每层只有 Conv + SiLU + 下采样，**没有提到时间步嵌入**；而底座 U-Net 的残差块明确用 time embedding $\mathbf{t}\_{emb}$ 做 scale & shift 调制（$\mathbf{t}\_{emb} = [\beta_t, \sin\beta_t, \cos\beta_t]$ 加到噪声特征图上）。若适配器确实不含时间步条件，则它在全部去噪步上**输出同一组条件特征**——这一点 SI 未明说，需要看代码确认。
 
 #### (4) 三个常见误读（逐条纠正）
 
@@ -443,7 +443,7 @@ $$\mathbf{C} = \mathrm{SiLU}\big(\mathrm{Conv}_{3\times3}(\mathrm{SiLU}(\mathrm{
 
 #### (5) 一个适配器 = 一种功能，但覆盖两种位宽
 
-- 微调目标是 $\mathcal{L}_{DM} = \mathbb{E}_{\mathbf{e}_0, c, \epsilon, t}\left[\|\epsilon - \epsilon_\theta(\mathbf{e}_t, t, c)\|_2^2\right]$，条件 $c$ 显式进入去噪网络；
+- 微调目标是 $\mathcal{L}\_{DM} = \mathbb{E}\_{\mathbf{e}\_0, c, \epsilon, t}\left[\|\epsilon - \epsilon_\theta(\mathbf{e}\_t, t, c)\|\_2^2\right]$，条件 $c$ 显式进入去噪网络；
 - 每个功能一个适配器（4 个），**每个适配器同时覆盖 1-bit 与 3-bit**，靠 bit-type embedding 区分——不是每位宽各训一个；
 - 微调时 1-bit / 3-bit 样本**联合训练**：每功能每位宽 **9,000 条**，超原子任务 **1,000 条**；300 epochs，全息任务约 5.5 小时；
 - 与标准 ControlNet 的差别：ControlNet 通常**复制整个主干 encoder** 作为条件支路，本文的适配器 encoder **每层只有 3×3 Conv + SiLU + 下采样**，可训参数量大幅缩减。
@@ -674,9 +674,9 @@ VO₂ 中红外热控辐射超表面**同时命中其中三项**：色散+损耗
 |------|------|
 | 二进制展开长度 | $n = \lceil \log_2 K \rceil$ |
 | 模拟比特映射 | $a_i = 2b_i - 1,\quad a_i \in \{-1, +1\}$ |
-| 采样量化 | $\hat{b}_i = \mathbb{1}(\tilde{a}_i > 0)$ |
-| 预训练损失（无条件） | $\mathcal{L}_{\text{DM}} = \mathbb{E}_{e_0,\epsilon,t}\left[\|\epsilon - \epsilon_\theta(e_t, t)\|_2^2\right]$ |
-| 微调损失（有条件） | $\mathcal{L}_{\text{DM}} = \mathbb{E}_{e_0,c,\epsilon,t}\left[\|\epsilon - \epsilon_\theta(e_t, t, c)\|_2^2\right]$ |
+| 采样量化 | $\hat{b}\_i = \mathbb{1}(\tilde{a}\_i > 0)$ |
+| 预训练损失（无条件） | $\mathcal{L}\_{\text{DM}} = \mathbb{E}\_{e_0,\epsilon,t}\left[\|\epsilon - \epsilon_\theta(e_t, t)\|\_2^2\right]$ |
+| 微调损失（有条件） | $\mathcal{L}\_{\text{DM}} = \mathbb{E}\_{e_0,c,\epsilon,t}\left[\|\epsilon - \epsilon_\theta(e_t, t, c)\|\_2^2\right]$ |
 | 编码图案张量 | $e \in \mathbb{R}^{H \times W \times n}$（H, W 为行/列数，n 为最大比特数） |
 | 反向去噪步数 | **10 步 DDIM**（SI Note 13；正文图中只标到 Step 8） |
 | 工作频率（超原子） | 8 / 9 / 11 / 12 / 17 GHz |

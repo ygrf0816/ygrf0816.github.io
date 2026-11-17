@@ -179,8 +179,8 @@ $$\mathcal{L} = \lambda_1 L_{\text{RL}} + \lambda_2 L_{\text{KL}} + \lambda_3(t)
 | **PINN 物理损失 $L_{\text{PINN}}$** | 见上节公式 | 物理约束，确保 ECM 一致性 |
 
 其中：
-- $\text{MSE}_{\text{SPEC}} = \frac{1}{N_f}\sum_k\left(|S_{21}^{\text{sim}}(f_k)| - |\hat{S}_{21}(f_k)|\right)^2$
-- $\text{PerceptualLoss} = \frac{1}{N_l}\sum_{l \in L}\|\phi_l(\text{img}_{\text{in}}) - \phi_l(\text{img}_{\text{pred}})\|_2^2$（CNN 多层特征图差异）
+- $\text{MSE}\_{\text{SPEC}} = \frac{1}{N_f}\sum_k\left(|S_{21}^{\text{sim}}(f_k)| - |\hat{S}\_{21}(f_k)|\right)^2$
+- $\text{PerceptualLoss} = \frac{1}{N_l}\sum_{l \in L}\|\phi_l(\text{img}\_{\text{in}}) - \phi_l(\text{img}\_{\text{pred}})\|\_2^2$（CNN 多层特征图差异）
 - $\alpha = 0.8$（通过验证实验确定，平衡谱精度与结构保真度）
 
 ### 4.5 余弦退火调度 $\lambda_3(t)$

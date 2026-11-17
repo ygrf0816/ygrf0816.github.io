@@ -15,6 +15,8 @@ cover: /assets/posts_figs/course-LSP-localized-plasmon/fig01_sphere.png
 
 > **一句话概括**：把 LSP 从“准静态近似为什么成立”一路推到“极化率 α、Fröhlich 条件、场增强”，中间补齐了课件跳过的拉普拉斯方程系数代数；核心结论是共振要求 $\mathrm{Re}\,\varepsilon=-2\varepsilon_m$，而环境介质 $\varepsilon_m>0$，所以提供负介电常数的那一方只能是金属。传播型 SPP 的内容见配套笔记《[表面等离激元极化激元（SPPs）](/Learning/2026/10/27/course-SPP-plasmonics.html)》。
 
+> **读前提示**：本文用到三样基础工具——球坐标下的拉普拉斯方程、Legendre 多项式、偶极子的势。不熟的话先看《[预备知识](/Learning/2026/11/17/basics-electromagnetics-for-plasmonics.html)》§3（介电函数）、§7（分离变量）、§8（Legendre）。
+
 ---
 
 ## 基本信息
@@ -26,7 +28,7 @@ cover: /assets/posts_figs/course-LSP-localized-plasmon/fig01_sphere.png
 | **参考教材** | Maier, *Plasmonics: Fundamentals and Applications*, Springer, 2007，第 5 章 |
 | **内容主线** | 两类等离激元的分工 → 准静态近似 → 拉普拉斯方程与边界条件 → 极化率 → 退极化场视角 → 为什么必须是金属 → Fröhlich 条件 → 偶极辐射与截面 → 形状/尺寸/核壳调谐 → 走向 Mie |
 | **配套图** | 8 张按公式重绘的计算图 + 14 张课件原片 |
-| **配套笔记** | 《表面等离激元极化激元（SPPs）：从 Drude 模型到亚波长光刻》；《米氏理论：从矢量谐波到多极共振》 |
+| **配套笔记** | 《[表面等离激元极化激元（SPPs）](/Learning/2026/10/27/course-SPP-plasmonics.html)》；《[米氏理论：从矢量谐波到多极共振](/Learning/2026/11/17/course-Mie-theory.html)》；《[预备知识](/Learning/2026/11/17/basics-electromagnetics-for-plasmonics.html)》 |
 
 ---
 
@@ -143,7 +145,7 @@ $$
 2. 但对可见—近红外照射下**尺寸小于 100 nm** 的球形或椭球形颗粒，它给出的近似已经够用；
 3. 再大就必须上 **Mie 理论**（1908 年，为解释金溶胶的颜色而建立），它把内外场展开成一组**矢量谐波**，准静态结果只是其幂级数的第一项。
 
-第 3 条是第 8.3 节之后所有内容的出发点，完整推导见独立笔记《米氏理论》。
+第 3 条是第 8.3 节之后所有内容的出发点，完整推导见独立笔记《[米氏理论](/Learning/2026/11/17/course-Mie-theory.html)》。
 
 > **注意**：判据里的 $\lambda$ 是**介质中**的波长，不是真空波长。同一个颗粒放在水里，$\lambda$ 缩短 $n_m$ 倍，准静态近似反而更容易满足；但共振频率会红移（第 7 节）。
 
@@ -167,6 +169,10 @@ $$
 
 ### 3.1 通解
 
+**这一节在算什么**：球外有一个均匀外场，球内没有自由电荷，所以球内外的电势都满足拉普拉斯方程 $\nabla^2\Phi=0$。解出电势，再取梯度就是场。麻烦在于边界是个球，只能用球坐标——而球坐标下这个方程不能直接积分，要靠**分离变量**拆成三个一元方程（来历见[预备知识 §7](/Learning/2026/11/17/basics-electromagnetics-for-plasmonics.html)）。
+
+分离变量做完，径向方程给出两个解 $r^{l}$ 与 $r^{-(l+1)}$，角向方程给出 Legendre 多项式 $P_l(\cos\theta)$，叠加起来就是通解：
+
 球坐标下，方位角对称（$\partial_\phi=0$）时拉普拉斯方程 $\nabla^2\Phi=0$ 的通解是
 
 $$
@@ -174,7 +180,9 @@ $$
 \tag{3.1}
 $$
 
-$P_l$ 是 Legendre 多项式。**球内要求 $r\to0$ 时有限**，所以 $B_l\equiv0$；球外要求 $r\to\infty$ 时回到外加场，所以保留两项。于是
+$P_l$ 是 **Legendre 多项式**——球面上"沿纬度方向"的驻波（前几个是 $1$、$\cos\theta$、$(3\cos^{2}\theta-1)/2$，形状见[预备知识 图 2](/Learning/2026/11/17/basics-electromagnetics-for-plasmonics.html)）。$l$ 就是节点的数目：$l=1$ 是"一正一负"，也就是偶极；$l=2$ 是"两正两负"，四极。**后面 3.3 节能让每个 $l$ 单独求解，靠的正是 $P_l$ 之间的正交性。**
+
+**球内要求 $r\to0$ 时有限**，所以 $B_l\equiv0$（$r^{-(l+1)}$ 在原点发散）；球外要求 $r\to\infty$ 时回到外加场，所以保留两项。于是
 
 $$
 \Phi_{\mathrm{in}}=\sum_{l=0}^{\infty}A_l r^{l}P_l(\cos\theta),
@@ -348,14 +356,23 @@ $$
 
 ### 4.3 与 Clausius–Mossotti 同形
 
-把体积 $V=\frac{4}{3}\pi a^{3}$ 提出来，(4.3) 变成
+**Clausius–Mossotti 是什么**：它原本不是讲单个球的，而是讲"把很多小球掺进介质里，整体变成一种新介质"这件事——也就是**有效介质理论**。1879 年前后 Clausius 与 Mossotti 各自发现，稀薄混合物的有效介电常数满足
+
+$$
+\frac{\varepsilon_{\mathrm{eff}}-\varepsilon_m}{\varepsilon_{\mathrm{eff}}+2\varepsilon_m}
+=f\cdot\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m},
+$$
+
+$f$ 是颗粒的体积占比。右边那个分式就是所谓的 **CM 因子**，它只由颗粒和介质的介电常数决定。
+
+**为什么单个球的极化率也是同一个因子**：把体积 $V=\frac{4}{3}\pi a^{3}$ 提出来，(4.3) 变成
 
 $$
 \alpha=3V\cdot\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m},
 \tag{4.4}
 $$
 
-后面那个分式正是 Clausius–Mossotti 因子的形式。CM 关系描述的是"稀薄颗粒系的有效介电常数"：
+也就是说，**单球的极化率 = 3 倍体积 × CM 因子**。CM 关系描述的是"稀薄颗粒系的有效介电常数"：
 
 $$
 \frac{\varepsilon_{\mathrm{eff}}-\varepsilon_m}{\varepsilon_{\mathrm{eff}}+2\varepsilon_m}
@@ -543,13 +560,48 @@ SiC、hBN、SiO$_2$ 在中红外有一个很强的 TO 声子振子（$f$ 接近 
 
 ## 7. Fröhlich 条件与共振频率
 
+### 7.0 先把这个名字说清楚
+
+文献里有三种写法，Fröhlich resonance、Fröhlich mode、dipole plasmon resonance，指的是同一件事，即**亚波长球的**最低阶（偶极，$l=1$）**表面等离激元共振**。
+
+名字来自 Herbert Fröhlich。1949 年他在《Theory of Dielectrics》里讨论离子晶体中球形颗粒的介电响应，把球内均匀场与外加场的关系写成了我们在第 3 节推出来的那个分式。后来人们把那分式的极点条件叫作 Fröhlich 条件，把共振本身叫作 Fröhlich 共振。
+
+**它到底指什么**。下面三句话是等价的，指向同一个能量。
+
+1. **代数上**：极化率的分母为零，即 $\varepsilon+2\varepsilon_m=0$，实部条件写成 $\mathrm{Re}\,\varepsilon=-2\varepsilon_m$。
+2. **物理上**：球表面的退极化场恰好抵消驱动场，电子的集体位移不再需要额外恢复力，振幅只被阻尼 $\mathrm{Im}\,\varepsilon$ 限住。
+3. **模式上**：球的最低阶（$l=1$）表面模在 $a\to0$ 时的极限频率。
+
+第 5.3 节走的是第 2 条路，第 3 节走的是第 1 条，两条路给出同一个式子。第 3 条要等读完第 9 节和《[米氏理论](/Learning/2026/11/17/course-Mie-theory.html)》才看得完整，这里先记住结论就行。
+
+图 9 把前两条画在一起。左边是分母实部随能量的变化，穿过零的那一点就是共振能量；右边在同一个能量上，幅度按对数暴涨，同时相位从 $0$ 转到 $\pi$，在共振点上正好经过 $\pm\pi/2$。
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/fig09_frohlich.png" alt="图9 Fröhlich共振的三种读法" />
+</div>
+
+*图 9（重绘）**(a)** 分母实部 $\mathrm{Re}\,\varepsilon+2\varepsilon_m$ 随光子能量的变化，三条曲线分别对应空气、水、石英环境，过零点依次是 3.85、3.42、3.21 eV；**(b)** 同一个能量上极化率的模（对数纵轴）与相位，模在这一点击穿两个数量级，相位由 $0$ 转到 $\pi$*
+
+**为什么它和 SPP 的判据长得不一样**。两者都是表面电荷振荡，差别只在几何提供的恢复力。写成同一个式子就是
+
+$$
+\mathrm{Re}\,\varepsilon=\varepsilon_m\left(1-\frac{1}{N}\right),
+\tag{7.0}
+$$
+
+$N$ 是退极化因子。平面界面 $N=1/2$，给出 $\varepsilon+\varepsilon_m=0$，这就是 SPP 的判据；球 $N=1/3$，给出 $\varepsilon+2\varepsilon_m=0$。**同一个物理，两个数字。**
+
+因为 $N$ 更小，球要求的负 $\varepsilon$ 更负，共振就落在更低的频率上。用无阻尼 Drude 代入能看清这个差距：平面给 $\omega_p/\sqrt{1+\varepsilon_m}$，球给 $\omega_p/\sqrt{1+2\varepsilon_m}$，空气里分别是 $0.71\,\omega_p$ 和 $0.58\,\omega_p$。
+
+**这个名字容易被误用的地方**。实验文章说「Fröhlich 共振」时，往往指的是整条消光峰，而峰位已经含着尺寸修正和辐射修正。严格讲那个条件只在 $a\to0$ 时成立。$a$ 到 20 nm 以上峰位就开始红移（见 7.3 与 9.2 节），这时更准确的说法是「偶极等离激元共振」，也不宜拿 $\mathrm{Re}\,\varepsilon=-2\varepsilon_m$ 直接反推实验测到的峰位。
+
+### 7.1 Drude 金属放在介质里
+
 <div style="text-align: center;">
   <img src="/assets/posts_figs/course-LSP-localized-plasmon/fig01_sphere.png" alt="图1 球的准静态极化与共振近场" />
 </div>
 
 *图 1（重绘）**(a)** 均匀外场中的球：场线在球内被“挤开”，表面的正负极化电荷与感应偶极 $\mathbf{p}$ 同向；**(b)** 共振时的近场分布，场被压在球外一层很薄的壳里，两极最强（10 nm 银球，含尺寸效应修正的阻尼）*
-
-### 7.1 Drude 金属放在介质里
 
 把无阻尼 Drude $\varepsilon=1-\omega_p^2/\omega^2$ 代入 (5.5)：
 
@@ -857,7 +909,7 @@ $x\to0$ 时分母第一项等于 $(\varepsilon+2\varepsilon_m)/[3(\varepsilon-\v
 
 *课件原片：式 (5.19) 的原文与逐项的物理解释。课件强调"分子里的 $x^{2}$ 项是激发场的推迟，分母里的 $x^{2}$ 项是退极化场的推迟"，两者的净效果都是红移*
 
-> **(9.3) 的适用范围**：这是 $x$ 的幂级数，$x\gtrsim0.2$（可见光下 $a\gtrsim40$ nm）时二阶截断已经不够，红移量会被高估，更高阶的模（四极、八极）也完全没算进去。图 6 里 $a=60$ nm 那个 415 nm 只能当趋势看，定量必须解完整的 Mie 级数。
+> **(9.3) 的适用范围**：这是 $x$ 的幂级数，$x\gtrsim0.2$（可见光下 $a\gtrsim40$ nm）时二阶截断已经不够，红移量会被高估，更高阶的模（四极、八极）也完全没算进去。图 6 里 $a=60$ nm 那个 415 nm 只能当趋势看，定量必须解完整的 Mie 级数。**《[Mie 笔记](/Learning/2026/11/17/course-Mie-theory.html) 图 3** 把这件事量出来了：$a=40$ nm 时两者差 20 nm，$a=120$ nm 时差 140 nm。
 >
 > 另外，图 6 用的 Drude 拟合**不含带间跃迁**，$\mathrm{Im}\,\varepsilon$ 偏小，所以峰值随尺寸掉得比真实银更陡。真实银在 320–400 nm 有带间吸收，线宽主要由它决定。
 
@@ -964,7 +1016,7 @@ $$
 | 7 | $\alpha=4\pi a^3\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m}$ | **球极化率** | (5.7) | (5.7) |
 | 8 | $\mathrm{Re}\,\varepsilon=-2\varepsilon_m$ | **Fröhlich 条件** | — | (5.8) |
 | 9 | $\omega_0=\omega_p/\sqrt{1+2\varepsilon_m}$ | 共振频率 | — | §5.2 |
-| 10 | $\mathbf{E}_{\mathrm{in}}=\frac{3\varepsilon_m}{\varepsilon+2\varepsilon_m}\mathbf{E}_0$ | 内场增强 | — | §5.2 |
+| 10 | $\mathbf{E}\_{\mathrm{in}}=\frac{3\varepsilon_m}{\varepsilon+2\varepsilon_m}\mathbf{E}\_0$ | 内场增强 | — | §5.2 |
 | 11 | $C_{\mathrm{sca}}=\frac{k^{4}}{6\pi}\lvert\alpha\rvert^{2}=\frac{8\pi}{3}k^{4}a^{6}\left\lvert\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m}\right\rvert^{2}$ | 散射截面 | — | (5.13a) |
 | 12 | $C_{\mathrm{abs}}=4\pi ka^{3}\,\mathrm{Im}\!\left[\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m}\right]$ | 吸收截面 | — | (5.13b) |
 | 13 | $\mathrm{Re}\,\varepsilon=\varepsilon_m(1-1/L_z)$ | 椭球共振 | — | §5.3 |
@@ -1093,7 +1145,7 @@ $N$ 是退极化因子。圆柱（二维截面为圆）$N=1/2$，给出 $\vareps
 | Ch.5 §5.1 | LSP 的定义、与 SPP 的区别 | §1 |
 | **Ch.5 §5.2** | **准静态近似、拉普拉斯方程、极化率、Fröhlich 条件** | **§2–§7** |
 | Ch.5 §5.3 | 推迟效应、偶极辐射、截面、尺寸与核壳修正 | §8.3–§9.3 |
-| Ch.5（Mie 部分） | 多极展开、矢量谐波、准静态作为首项 | 配套笔记《米氏理论》 |
+| Ch.5（Mie 部分） | 多极展开、矢量谐波、准静态作为首项 | 配套笔记《[米氏理论](/Learning/2026/11/17/course-Mie-theory.html)》 |
 | Ch.8–10 | SERS、折射率传感、等离激元应用 | §10 |
 | Ch.2 §2.2 | 平面 SPP 的色散（对照） | 配套笔记《SPPs》§5 |
 

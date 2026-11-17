@@ -289,8 +289,8 @@ $$n_{ve}^{eff} = \frac{34.41}{3} = 11.47$$
 ### 5.2 局域态密度估算
 
 假设：
-- $N_{\lambda \rightarrow \sigma^*} \approx N_{\sigma \rightarrow \lambda^*} \approx N_{ut}/2$
-- $N_{\lambda \rightarrow \xi^*} / N_{\lambda \rightarrow \sigma^*} \approx N_{\sigma \rightarrow \xi^*} / N_{\sigma \rightarrow \sigma^*}$
+- $N_{\lambda \rightarrow \sigma^\*} \approx N_{\sigma \rightarrow \lambda^\*} \approx N_{ut}/2$
+- $N_{\lambda \rightarrow \xi^\*} / N_{\lambda \rightarrow \sigma^\*} \approx N_{\sigma \rightarrow \xi^\*} / N_{\sigma \rightarrow \sigma^\*}$
 
 得到局域态总跃迁强度：
 

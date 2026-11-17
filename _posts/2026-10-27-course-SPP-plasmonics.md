@@ -15,6 +15,8 @@ cover: /assets/posts_figs/course-SPP-plasmonics/fig01_geometry.png
 
 > **一句话概括**：把 SPPs 从"金属为什么能用麦克斯韦方程描述"一路推到"棱镜/光栅怎么激发、怎么用 SPP 做亚波长光刻"，并补齐了课件里被跳过的代数步骤。主线是：Drude 模型 → 单界面色散关系 → 动量失配与三种激发方式 → SPP 干涉光刻的调谐自由度 → 二维偏振调控 → Superlens 成像光刻。局域型 LSP 已拆成独立笔记《[局域表面等离激元（LSP）](/Learning/2026/11/10/course-LSP-localized-plasmon.html)》。
 
+> **读前提示**：这是三份笔记里最基础的一份，从波矢讲到耦合方式。如果"波矢为什么必须守恒""倏逝波是什么"这两句还发虚，先看《[预备知识](/Learning/2026/11/17/basics-electromagnetics-for-plasmonics.html)》§2、§4、§6——本文第 1、8 节默认你知道这些。
+
 ---
 
 ## 基本信息
@@ -275,7 +277,7 @@ $$
 m\ddot{\mathbf{x}}+m\gamma\dot{\mathbf{x}}=-e\mathbf{E}(t).
 $$
 
-设谐和驱动 $\mathbf{E}(t)=\mathbf{E}_0e^{-i\omega t}$，取特解 $\mathbf{x}(t)=\mathbf{x}_0e^{-i\omega t}$，代入得 $(-\omega^2-i\gamma\omega)m\mathbf{x}_0=-e\mathbf{E}_0$，即
+设谐和驱动 $\mathbf{E}(t)=\mathbf{E}\_0e^{-i\omega t}$，取特解 $\mathbf{x}(t)=\mathbf{x}\_0e^{-i\omega t}$，代入得 $(-\omega^2-i\gamma\omega)m\mathbf{x}\_0=-e\mathbf{E}\_0$，即
 
 $$
 \mathbf{x}(t)=\frac{e}{m(\omega^2+i\gamma\omega)}\mathbf{E}(t).
@@ -542,7 +544,11 @@ $$
 
 ### 5.1 两个连续性条件
 
-界面 $z=0$ 处，切向 $\mathbf{E}$ 和切向 $\mathbf{H}$ 连续；在无自由表面电荷/电流时，法向 $\mathbf{D}$ 连续。对 TM 模：
+界面 $z=0$ 处，切向 $\mathbf{E}$ 和切向 $\mathbf{H}$ 连续；在无自由表面电荷/电流时，法向 $\mathbf{D}$ 连续。
+
+> **这三个条件不是本文特有的**，任何界面上都成立，来源见[预备知识 §5](/Learning/2026/11/17/basics-electromagnetics-for-plasmonics.html)。它们的作用只有一个：把界面两侧的通解"缝"起来，从而定出 $\beta$。**整篇笔记里所有"联立求解"的地方，用的都是这三条。**
+
+对 TM 模：
 
 **(i) $H_y$ 连续**（切向磁场）：
 
@@ -1648,7 +1654,7 @@ $$
 | 15 | $\Lambda=\lambda_{sp}/2=\pi/\beta$ | SPP 干涉条纹 | p35 | — |
 | 16 | $\tanh(k_da)=-k_m\varepsilon_d/(k_d\varepsilon_m)$ | MIM 间隙等离激元色散 | p38 | (2.29) |
 | 17 | $\vec{\beta}_{i,j}=i\frac{2\pi}{\Lambda_x}\hat{x}+j\frac{2\pi}{\Lambda_y}\hat{y}$ | 二维相位匹配 | p60 | — |
-| 18 | $c_{i,j}\propto\mathbf{E}\cdot\vec{\beta}_{i,j}/\lvert\vec{\beta}_{i,j}\rvert$ | 偏振选择定则 | p60 | — |
+| 18 | $c_{i,j}\propto\mathbf{E}\cdot\vec{\beta}\_{i,j}/\lvert\vec{\beta}\_{i,j}\rvert$ | 偏振选择定则 | p60 | — |
 | 19 | $V=(I_{\max}-I_{\min})/(I_{\max}+I_{\min})$ | 条纹可见度 | — | — |
 
 ### 17.2 三个"一眼看出"的判据

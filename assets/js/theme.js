@@ -141,7 +141,9 @@
     html += "</ol>";
     tocRoot.outerHTML = html;
 
-    var links = document.querySelectorAll("[data-toc-root] a, .toc-list a");
+    var panel = document.getElementById("post-toc");
+    var navEl = document.querySelector(".toc-nav");
+    var links = document.querySelectorAll(".toc-list a");
     var linkMap = {};
     links.forEach(function (a) {
       var id = (a.getAttribute("href") || "").replace(/^#/, "");
@@ -149,26 +151,141 @@
     });
     var ids = items.map(function (i) { return i.id; });
 
+    /* ---------- 4.1 当前章节高亮（滚动跟随） ---------- */
     var current = null;
-    function highlight() {
-      var pos = window.pageYOffset + 90; // 标题下边距
-      var active = null;
-      for (var i = 0; i < ids.length; i++) {
-        var el = document.getElementById(ids[i]);
-        if (el && el.getBoundingClientRect().top + window.pageYOffset - 80 <= pos) {
-          active = ids[i];
-        }
-      }
-      if (active !== current) {
-        if (current && linkMap[current]) linkMap[current].classList.remove("is-current");
-        if (active && linkMap[active]) {
-          linkMap[active].classList.add("is-current");
-          current = active;
-        }
+    var ticking = false;
+
+    function ensureVisible(a) {
+      if (!navEl) return;
+      if (navEl.scrollHeight <= navEl.clientHeight + 4) return;
+      var ar = a.getBoundingClientRect();
+      var nr = navEl.getBoundingClientRect();
+      if (ar.top < nr.top + 6) {
+        navEl.scrollTop -= nr.top + 6 - ar.top;
+      } else if (ar.bottom > nr.bottom - 6) {
+        navEl.scrollTop += ar.bottom - (nr.bottom - 6);
       }
     }
-    window.addEventListener("scroll", highlight, { passive: true });
+
+    function highlight() {
+      // 判定线：粘性页头 76px + 标题 scroll-margin-top 84px，留一点余量
+      var line = 190;
+      var active = ids[0];
+      for (var i = 0; i < ids.length; i++) {
+        var el = document.getElementById(ids[i]);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= line) active = ids[i];
+        else break;
+      }
+      // 滚到底部时锁定最后一节，避免最后一节永远高亮不到
+      var docH = document.documentElement.scrollHeight;
+      if (window.innerHeight + (window.pageYOffset || 0) >= docH - 6) {
+        active = ids[ids.length - 1];
+      }
+      if (active === current) return;
+      if (current && linkMap[current]) {
+        linkMap[current].classList.remove("is-current");
+        linkMap[current].removeAttribute("aria-current");
+      }
+      var a = linkMap[active];
+      if (a) {
+        a.classList.add("is-current");
+        a.setAttribute("aria-current", "true");
+        ensureVisible(a);
+      }
+      current = active;
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        ticking = false;
+        highlight();
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     highlight();
+
+    /* ---------- 4.2 收起 / 展开 ---------- */
+    var toggles = document.querySelectorAll("[data-toc-toggle]");
+    var narrow = window.matchMedia("(max-width: 960px)");
+
+    function isNarrow() { return narrow.matches; }
+
+    function syncAria() {
+      var collapsed = document.body.classList.contains("toc-collapsed");
+      toggles.forEach(function (b) {
+        var open = isNarrow()
+          ? document.body.classList.contains("toc-open")
+          : !collapsed;
+        b.setAttribute("aria-expanded", open ? "true" : "false");
+        if (b.classList.contains("toc-collapse")) {
+          b.setAttribute("aria-label", "收起目录");
+          b.setAttribute("title", "收起目录");
+        } else {
+          b.setAttribute("aria-label", "展开目录");
+          b.setAttribute("title", "展开目录");
+        }
+      });
+    }
+
+    // 记住上次状态（宽屏下默认展开）
+    var saved = null;
+    try { saved = localStorage.getItem("toc-collapsed"); } catch (e) {}
+    if (saved === "1") document.body.classList.add("toc-collapsed");
+
+    function toggle() {
+      if (isNarrow()) {
+        document.body.classList.toggle("toc-open");
+      } else {
+        var collapsed = document.body.classList.toggle("toc-collapsed");
+        try { localStorage.setItem("toc-collapsed", collapsed ? "1" : "0"); } catch (e) {}
+      }
+      syncAria();
+      if (!isNarrow()) highlight();
+    }
+
+    toggles.forEach(function (b) { b.addEventListener("click", toggle); });
+
+    // 窄屏：点条目后自动收起浮层
+    Array.prototype.forEach.call(links, function (a) {
+      a.addEventListener("click", function () {
+        if (isNarrow()) {
+          document.body.classList.remove("toc-open");
+          syncAria();
+        }
+      });
+    });
+
+    // 窄屏：点浮层外部 / 按 Esc 收起
+    document.addEventListener("click", function (ev) {
+      if (!isNarrow() || !document.body.classList.contains("toc-open")) return;
+      var t = ev.target;
+      if (t && (t.closest && (t.closest(".post-toc") || t.closest(".toc-fab")))) return;
+      document.body.classList.remove("toc-open");
+      syncAria();
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && document.body.classList.contains("toc-open")) {
+        document.body.classList.remove("toc-open");
+        syncAria();
+      }
+    });
+
+    // 断点切换时清理浮层状态
+    function onBreak() {
+      if (!isNarrow()) document.body.classList.remove("toc-open");
+      syncAria();
+      highlight();
+    }
+    if (narrow.addEventListener) narrow.addEventListener("change", onBreak);
+    else if (narrow.addListener) narrow.addListener(onBreak);
+
+    syncAria();
+    if (panel) panel.removeAttribute("hidden");
   }
 
   function escapeHtml(s) {

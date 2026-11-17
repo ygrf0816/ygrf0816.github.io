@@ -221,7 +221,7 @@ def gasf_inverse(gasf_matrix, x_min, x_max):
 
 $$\text{GASF}_{ii} = \cos(2\phi_i) = 2\tilde{x}_i^2 - 1$$
 
-由于 $\tilde{x}_i^2$ 无法区分 $+\tilde{x}_i$ 和 $-\tilde{x}_i$，存在**符号歧义**。此时需要借助 GADF 来辅助恢复符号信息：
+由于 $\tilde{x}\_i^2$ 无法区分 $+\tilde{x}\_i$ 和 $-\tilde{x}\_i$，存在**符号歧义**。此时需要借助 GADF 来辅助恢复符号信息：
 
 $$\text{GADF}_{i, i+1} = \sin(\phi_i - \phi_{i+1})$$
 

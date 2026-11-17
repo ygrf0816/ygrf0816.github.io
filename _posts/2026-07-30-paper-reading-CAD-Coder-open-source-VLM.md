@@ -109,7 +109,7 @@ $$n(\Omega) = \left\{ \frac{x - \bar{x}}{\sqrt{\dfrac{\mathrm{tr}(I)}{2\,\mathrm
 **附录证明要点**：
 - **Lemma 1**：仿射变换 $f(x) = sRx + t$（$R \in SO(3)$）是保相对体积的双射，$\mathrm{Vol}(\Omega_2) = s^3\,\mathrm{Vol}(\Omega_1)$；
 - **Lemma 2**：刚体对齐问题 $\min_{R,s,t} \int_{\Omega_1} \|sRx + t - f(x)\|_2^2 dx$ 有唯一闭式解：
-  - $t^* = \bar{x}_2 - sR\bar{x}_1$（质心对齐）；
+  - $t^\* = \bar{x}\_2 - sR\bar{x}\_1$（质心对齐）；
   - $s^* = \sqrt{\mathrm{tr}(I_2)/\mathrm{Vol}(\Omega_2)} \big/ \sqrt{\mathrm{tr}(I_1)/\mathrm{Vol}(\Omega_1)}$；
   - $R^* = VU^T$（对互协方差 $S = \int \tilde{f}(x)\tilde{x}^T dx$ 做 SVD，即正交 Procrustes 问题）。
 - 作者论证：相比 DeepCAD/GenCAD 用的"点云化 + bounding box 角点对齐 + Chamfer Distance"，该 IOU 协议**数学上更严格、对实体比较保真度更高**。
