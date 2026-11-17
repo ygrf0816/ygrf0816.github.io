@@ -22,11 +22,11 @@ cover: /assets/posts_figs/course-LSP-localized-plasmon/fig01_sphere.png
 | 项目 | 内容 |
 |---|---|
 | **笔记性质** | 课程笔记（专题整理），由原 SPP 笔记第 12 节拆出并大幅扩写 |
-| **依据** | 课程 PPT（SOOCHOW UNIVERSITY）LSP 章节，对应教材 §5.1–5.2；另含 2026-11-10 讲前半段 |
+| **依据** | 课程 PPT（SOOCHOW UNIVERSITY）LSP 章节，对应教材 §5.1–5.3；跨 2026-11-10 与 11-17 两次课 |
 | **参考教材** | Maier, *Plasmonics: Fundamentals and Applications*, Springer, 2007，第 5 章 |
-| **内容主线** | 两类等离激元的分工 → 准静态近似 → 拉普拉斯方程与边界条件 → 极化率 → 退极化场视角 → 为什么必须是金属 → Fröhlich 条件 → 场增强与截面 → 形状/尺寸调谐 |
-| **配套图** | 4 张按公式重绘的计算图 + 7 张课件原片 |
-| **配套笔记** | 《表面等离激元极化激元（SPPs）：从 Drude 模型到亚波长光刻》 |
+| **内容主线** | 两类等离激元的分工 → 准静态近似 → 拉普拉斯方程与边界条件 → 极化率 → 退极化场视角 → 为什么必须是金属 → Fröhlich 条件 → 偶极辐射与截面 → 形状/尺寸/核壳调谐 → 走向 Mie |
+| **配套图** | 8 张按公式重绘的计算图 + 14 张课件原片 |
+| **配套笔记** | 《表面等离激元极化激元（SPPs）：从 Drude 模型到亚波长光刻》；《米氏理论：从矢量谐波到多极共振》 |
 
 ---
 
@@ -136,6 +136,14 @@ $$
 | 近红外 | 1000 nm | 752 nm | 0.013 | 很好 |
 
 课件给的实用界限是 $d<100$ nm（即 $a<50$ nm）时，最低阶近似对多数用途够用。这个数字的含义是 $a/\lambda\lesssim0.1$。
+
+课件把这个界限写成三条递进的话，值得照录：
+
+1. 准静态理论（Fröhlich 条件满足时的偶极共振）**严格只对无穷小的颗粒成立**；
+2. 但对可见—近红外照射下**尺寸小于 100 nm** 的球形或椭球形颗粒，它给出的近似已经够用；
+3. 再大就必须上 **Mie 理论**（1908 年，为解释金溶胶的颜色而建立），它把内外场展开成一组**矢量谐波**，准静态结果只是其幂级数的第一项。
+
+第 3 条是第 8.3 节之后所有内容的出发点，完整推导见独立笔记《米氏理论》。
 
 > **注意**：判据里的 $\lambda$ 是**介质中**的波长，不是真空波长。同一个颗粒放在水里，$\lambda$ 缩短 $n_m$ 倍，准静态近似反而更容易满足；但共振频率会红移（第 7 节）。
 
@@ -561,6 +569,12 @@ $$
 
 这个 $\sqrt{3}$ 是球几何的指纹：换成圆柱，同样的推导给出 $\omega_p/\sqrt{2}$。
 
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/slide_alpha_spectrum.jpg" alt="课件原片：极化率的模与相位" />
+</div>
+
+*课件原片（教材 Fig. 5.2）：银的 Drude 拟合下 $\lvert \alpha\rvert $ 与 $\arg\alpha$ 随能量的变化。$\lvert \alpha\rvert $ 在 $\lvert \varepsilon+2\varepsilon_m\rvert $ 取极小处达到峰；$\arg\alpha$ 在共振点附近从 $-\pi/2$ 跳到 $+\pi/2$，说明共振两侧的偶极响应反相——这就是"共振前后场反了一个号"的数学表达。*
+
 ### 7.2 环境移动
 
 由 (7.1)，$\varepsilon_m$ 越大，$\omega_0$ 越小（红移），而且是**平方根**依赖：
@@ -639,26 +653,128 @@ $$
 
 所以 10 倍的场增强给出 $10^4$ 的信号增强。单颗银球做到 $10^{4}$–$10^{5}$，二聚体“热点”可以做到 $10^{8}$ 以上，这就是单分子 SERS 的物理基础。**注意四次方意味着场增强的微小改进会被极度放大，这也是 SERS 重复性差的根源。**
 
-### 8.3 吸收与散射截面
+### 8.3 偶极辐射：从近场到远场
 
-偶极近似下的两个截面（标准结果，量纲为面积）：
+前两节的场都是**静电解**，只回答了"颗粒附近长什么样"，没回答"能量怎么离开"。要算散射截面，必须先有远场。
+
+把偶极矩看成随时间振荡的 $\mathbf{p}(t)=\mathbf{p}e^{-i\omega t}$，完整的辐射场是（Jackson 标准结果，式 5.10）
 
 $$
-C_{\mathrm{abs}}=k\,\mathrm{Im}\,\alpha,
-\qquad
-C_{\mathrm{sca}}=\frac{k^{4}}{6\pi}\left|\alpha\right|^{2},
-\qquad
-C_{\mathrm{ext}}=C_{\mathrm{abs}}+C_{\mathrm{sca}} .
+\mathbf{H}=\frac{ck^{2}}{4\pi}(\mathbf{n}\times\mathbf{p})\frac{e^{ikr}}{r}\left(1-\frac{1}{ikr}\right),
 \tag{8.4}
 $$
 
-两者的比例决定颗粒“看起来是什么”：
+$$
+\mathbf{E}=\frac{1}{4\pi\varepsilon_0\varepsilon_m}\left\{k^{2}(\mathbf{n}\times\mathbf{p})\times\mathbf{n}\frac{e^{ikr}}{r}
++\left[3\mathbf{n}(\mathbf{n}\cdot\mathbf{p})-\mathbf{p}\right]\left(\frac{1}{r^{3}}-\frac{ik}{r^{2}}\right)e^{ikr}\right\},
+\tag{8.5}
+$$
+
+$\mathbf{n}$ 是从偶极指向观察点的单位矢量。括号里三档 $r$ 的幂次就是三个区：
+
+| 区 | 判据 | 主导项 | 形态 |
+| --- | --- | --- | --- |
+| 近场 | $kr\ll1$ | $1/r^{3}$ | 静电偶极场，即 (8.1) 的 $\mathbf{E}_{\mathrm{out}}$ |
+| 中间场 | $kr\sim1$ | $1/r^{2}$ | 两者过渡 |
+| 辐射场 | $kr\gg1$ | $1/r$ | 球面波 |
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/fig05_dipole.png" alt="图5 偶极场的三个区" />
+</div>
+
+*图 5（重绘）**(a)** 三个分量的径向依赖：近场 $1/r^{3}$、中间场 $1/r^{2}$、辐射场 $1/r$，交于 $kr\approx1$；**(b)** 远场辐射强度 $\propto\sin^{2}\theta$，沿偶极轴方向没有辐射*
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/slide_dipole_zones.jpg" alt="课件原片：近场与辐射区" />
+</div>
+
+*课件原片：$kr\ll1$ 时 (5.11a)(5.11b) 给出静电结果，$kr\gg1$ 时 (5.12a)(5.12b) 给出球面横波。课件特意点出 "the fields are predominantly electric in nature"——因为 $\lvert \mathbf{H}\rvert /\lvert \mathbf{E}\rvert $ 比电场小一个 $\sqrt{\varepsilon_0/\mu_0}\,kr$*
+
+**近场退化成静电解**：取 $kr\ll1$、只留 $1/r^{3}$ 项，(8.5) 就回到 (8.1) 的 $\mathbf{E}_{\mathrm{out}}$；磁场只剩 $\frac{i\omega}{4\pi}(\mathbf{n}\times\mathbf{p})/r^{2}$。
+
+**磁场比电场小一个 $kr$**：
 
 $$
-\frac{C_{\mathrm{sca}}}{C_{\mathrm{abs}}}=\frac{k^{3}|\alpha|}{6\pi\,\mathrm{Im}\,\alpha}\propto a^{3}.
+\frac{\left\lvert\mathbf{H}\right\rvert}{\left\lvert\mathbf{E}\right\rvert}\approx\sqrt{\frac{\varepsilon_0\varepsilon_m}{\mu_0}}\,kr .
+\tag{8.6}
 $$
 
-**颗粒越大，散射越占主导；越小，吸收越占主导。** 这解释了两个常见现象：10 nm 的金溶胶几乎透明（吸收为主，颜色是透射色），50 nm 的金溶胶呈浑浊的红色（散射为主，看到的是散射色）；而 $C_{\mathrm{sca}}\propto k^4\propto\lambda^{-4}$ 就是瑞利散射的蓝光增强，天空是蓝的和金溶胶是红的，是同一个 $k^4$ 的两面。
+这就是为什么前面解静电问题时根本不提 $\mathbf{H}$——$kr\to0$ 时它按 $kr$ 趋零，准静态世界里磁场不存在。
+
+**远场是横波**：$kr\gg1$ 时只剩 $1/r$ 项，
+
+$$
+\mathbf{H}=\frac{ck^{2}}{4\pi}(\mathbf{n}\times\mathbf{p})\frac{e^{ikr}}{r},
+\qquad
+\mathbf{E}=\sqrt{\frac{\mu_0}{\varepsilon_0\varepsilon_m}}\,\mathbf{H}\times\mathbf{n},
+\tag{8.7}
+$$
+
+$\mathbf{E}\perp\mathbf{H}\perp\mathbf{n}$，$\left\lvert\mathbf{E}\right\rvert/\left\lvert\mathbf{H}\right\rvert=\sqrt{\mu_0/(\varepsilon_0\varepsilon_m)}$ 正是介质的波阻抗。
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/slide_dipole_fields.jpg" alt="课件原片：偶极场的完整表达式" />
+</div>
+
+*课件原片：式 (5.10a)(5.10b) 的原始形式，注意 $\mathbf{H}$ 里那个 $(1-1/ikr)$ 因子——它就是"远场只剩横波"的开关*
+
+### 8.4 吸收与散射截面
+
+有了远场就能算"这颗球拦下多少光"。先把坡印廷积分走一遍（这一步课件跳了）。
+
+时间平均坡印廷矢量的大小是 $\left\lvert\langle\mathbf{S}\rangle\right\rvert=\frac{1}{2}\sqrt{\mu_0/(\varepsilon_0\varepsilon_m)}\left\lvert\mathbf{H}\right\rvert^{2}$，代入 (8.7) 并对整个球面 $4\pi r^{2}$ 积分，用 $\int\sin^{2}\theta\,d\Omega=8\pi/3$：
+
+$$
+P_{\mathrm{sca}}=\frac{c^{2}k^{4}\left\lvert\mathbf{p}\right\rvert^{2}}{12\pi}\sqrt{\frac{\mu_0}{\varepsilon_0\varepsilon_m}} .
+\tag{8.8}
+$$
+
+入射强度 $I_0=\frac{1}{2}\sqrt{\varepsilon_0\varepsilon_m/\mu_0}E_0^{2}$，再用 $\mathbf{p}=\varepsilon_0\varepsilon_m\alpha\mathbf{E}_0$ 代进去，相除即得
+
+$$
+C_{\mathrm{sca}}=\frac{P_{\mathrm{sca}}}{I_0}=\frac{k^{4}}{6\pi}\left\lvert\alpha\right\rvert^{2}
+=\frac{8\pi}{3}k^{4}a^{6}\left\lvert\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m}\right\rvert^{2}.
+\tag{8.9}
+$$
+
+吸收截面同理，由偶极吸收功率 $\frac{1}{2}\omega\,\mathrm{Im}(\mathbf{p}\cdot\mathbf{E}^{*})$ 得
+
+$$
+C_{\mathrm{abs}}=k\,\mathrm{Im}\,\alpha
+=4\pi k a^{3}\,\mathrm{Im}\!\left[\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m}\right],
+\qquad
+C_{\mathrm{ext}}=C_{\mathrm{abs}}+C_{\mathrm{sca}} .
+\tag{8.10}
+$$
+
+把 α 代进去以后，$a$ 的幂次一目了然：**吸收 $\propto a^{3}$（体积），散射 $\propto a^{6}$（偶极矩的平方）。**
+
+| 量 | 对 $a$ 的标度 | 物理图像 |
+| --- | --- | --- |
+| $C_{\mathrm{abs}}$ | $a^{3}$ | 每个体积元各自吸光，相干性无关 |
+| $C_{\mathrm{sca}}$ | $a^{6}$ | 所有体积元相干辐射，振幅先相加再平方 |
+| $C_{\mathrm{sca}}/C_{\mathrm{abs}}$ | $a^{3}$ | 大颗粒散射主导，小颗粒吸收主导 |
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/slide_cross_sections.jpg" alt="课件原片：两个截面" />
+</div>
+
+*课件原片：式 (5.13a)(5.13b) 的原始形式，下面那句星标结论正是上面这张表的内容——"吸收按 $a^{3}$ 走，散射按 $a^{6}$ 走，所以小颗粒里吸收压倒性占优"*
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/fig07_xsec.png" alt="图7 吸收与散射截面" />
+</div>
+
+*图 7（重绘）**(a)** $\lambda_0=400$ nm 的银球：$C_{\mathrm{abs}}\propto a^{3}$ 与 $C_{\mathrm{sca}}\propto a^{6}$ 两条直线，交越在 $a\approx12$ nm；**(b)** 改在"各自的共振峰上"比较，交越挪到 $a\approx42$ nm——因为共振把吸收放大了 $1/\mathrm{Im}\,\varepsilon$ 倍*
+
+**"40 nm"这个数字的来历。** 两个交越点差了三倍，原因就是**比较的波长不同**：
+
+- 固定在 400 nm 比，小颗粒已离开共振，吸收优势不明显，交越在 12 nm；
+- 在各自共振峰上比，$C_{\mathrm{abs}}$ 被 $1/\mathrm{Im}\,\varepsilon$ 放大，交越推到 42 nm。
+
+课件说的"40 nm 以下要用光热技术成像"，对应的是后者：小颗粒吸收压倒性占优、散射几乎为零，用暗场散射光根本看不见它，但它吸收的光会变成热，热透镜或光热信号就能成像。反过来，用散射光看大颗粒容易，但背景里只要有更大的散射体，小颗粒就完全被淹没——$C_{\mathrm{sca}}\propto a^{6}$ 意味着大颗粒的散射比小颗粒强几个数量级。
+
+> **这些公式对介质球同样成立。** 推导里没有任何"球必须是金属"的假设，$\varepsilon$ 取正号就是介质球的瑞利散射。区别只在有没有共振：金属球在 $\mathrm{Re}\,\varepsilon=-2\varepsilon_m$ 处把 $\left\lvert\alpha\right\rvert$ 放大两个量级，介质球只是平滑地随波长变化。这也是为什么"等离激元"和"瑞利散射"在公式上是同一套，在物理上是两件事。
 
 ---
 
@@ -692,13 +808,66 @@ $L_z=1/3$ 时退回 (5.5)。
 
 **金纳米棒的“纵向模”就是这条曲线。** 银棒把纵横比从 1 调到 4，共振就从 322 nm 拉到 539 nm；换成金（$\mathrm{Re}\,\varepsilon$ 在红光区更负）或者把纵横比再放大到 5–6，就能进入 700–800 nm 的近红外窗口——这正是光热治疗和 NIR 传感偏爱金棒的原因。作为对照，改尺寸只能把共振挪几十纳米，改形状能挪几百纳米，所以**形状是比尺寸强得多的旋钮**。
 
-### 9.2 尺寸：红移、展宽与高阶模
+### 9.2 尺寸：把 $x=\pi a/\lambda_0$ 展开到二阶
 
-尺寸增大的三条后果，都与准静态近似的失效有关：
+上面的 α 都是 $x\to0$ 的极限。把推迟效应按尺寸参数 $x=\pi a/\lambda_0$ 作幂级数展开，保留到 $x^{2}$ 再补上辐射阻尼的 $x^{3}$ 项，得到（Meier & Wokaun 1983）
 
-1. **红移**：相位延迟使球的“有效”极化减弱，共振向长波移动，近似有 $\Delta\lambda/\lambda\propto(a/\lambda)^{2}$；
-2. **展宽**：辐射阻尼（$C_{\mathrm{sca}}$ 那条通道）开始吃掉能量，线宽变大；
-3. **出现四极模**：$a\gtrsim40$ nm 时在偶极峰蓝侧出现一个弱峰，$a\gtrsim80$ nm 时四极可以和偶极一样强。
+$$
+\alpha=\frac{1-\frac{1}{10}(\varepsilon+\varepsilon_m)x^{2}+O(x^{4})}
+{\left(\frac{1}{3}+\frac{\varepsilon_m}{\varepsilon-\varepsilon_m}\right)
+-\frac{1}{30}(\varepsilon+10\varepsilon_m)x^{2}
+-i\frac{4\pi^{2}\varepsilon_m^{3/2}}{3}\frac{V}{\lambda_0^{3}}+O(x^{4})}\,V .
+\tag{9.3}
+$$
+
+最后一项里的 $V$ 也可以换成 $x$，因为 $a=x\lambda_0/\pi$、$V=\frac{4}{3}\pi a^{3}$：
+
+$$
+\frac{4\pi^{2}\varepsilon_m^{3/2}}{3}\frac{V}{\lambda_0^{3}}=\frac{16}{9}\varepsilon_m^{3/2}x^{3}.
+\tag{9.4}
+$$
+
+于是分母三项的量级分别是 $O(1)$、$O(x^{2})$、$O(x^{3})$。**每一项都有明确的物理来源**：
+
+| 位置 | 项 | 物理来源 | 后果 |
+| --- | --- | --- | --- |
+| 分子 | $-\frac{1}{10}(\varepsilon+\varepsilon_m)x^{2}$ | 激发场在球体积上的**推迟** | 只改幅度，不动极点 |
+| 分母 | $-\frac{1}{30}(\varepsilon+10\varepsilon_m)x^{2}$ | **退极化场**的推迟 | 再移动一次 |
+| 分母 | $-i\frac{16}{9}\varepsilon_m^{3/2}x^{3}$ | **辐射阻尼** | 展宽、峰值下降 |
+
+$x\to0$ 时分母第一项等于 $(\varepsilon+2\varepsilon_m)/[3(\varepsilon-\varepsilon_m)]$，(9.3) 自动退回 (4.3)，可以直接验算。
+
+**为什么一定是红移？** 先用一个符号判断锁定方向。
+
+极点的位置由**分母**决定（分子的 $x^{2}$ 项是乘性因子，只改幅度，不动极点）。共振处准静态分母为零，即 $\frac{1}{3}+\frac{\varepsilon_m}{\varepsilon-\varepsilon_m}=0$，等价于 $\varepsilon=-2\varepsilon_m$。此时 $\varepsilon+10\varepsilon_m=8\varepsilon_m>0$，分母里的 $x^{2}$ 项是负的，把分母实部推到负值。要重新让实部归零，就必须让 $\frac{1}{3}+\frac{\varepsilon_m}{\varepsilon-\varepsilon_m}$ 变正，也就是 $\varepsilon$ 比 $-2\varepsilon_m$ 更"不负"、即能量更低。**所以一定是红移，不可能是蓝移。**
+
+> 课件把分子那项的物理写成"leading to a shift in the plasmon resonance"，这句话要打个折：分子的推迟确实改变了响应幅度，但峰位的移动主要来自分母。真正的红移量是两个 $x^{2}$ 项与 $x^{3}$ 阻尼项叠加的结果，符号由分母那一项定。
+
+**红移的物理图像**：颗粒越大，正负电荷堆在相距更远的两个界面上，"弹簧"变长、恢复力变弱，频率自然下降。顺带一个推论：共振离带间跃迁越远，$\mathrm{Im}\,\varepsilon$ 越小，峰也越尖锐——这就是为什么大颗粒的峰虽然红移却不一定更宽。
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/fig06_size.png" alt="图6 尺寸修正" />
+</div>
+
+*图 6（重绘）**(a)** 由 (9.3) 算出的 $\lvert\alpha\rvert/4\pi a^{3}$：5/10/20 nm 三条曲线几乎重合（红移仅几 nm），40 nm 才明显红移、展宽、峰值掉一个量级；**(b)** 峰位随半径的变化，$a=40$ nm 已红移 17 nm，$a=60$ nm 到 415 nm*
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/slide_size_correction.jpg" alt="课件原片：尺寸修正的极化率" />
+</div>
+
+*课件原片：式 (5.19) 的原文与逐项的物理解释。课件强调"分子里的 $x^{2}$ 项是激发场的推迟，分母里的 $x^{2}$ 项是退极化场的推迟"，两者的净效果都是红移*
+
+> **(9.3) 的适用范围**：这是 $x$ 的幂级数，$x\gtrsim0.2$（可见光下 $a\gtrsim40$ nm）时二阶截断已经不够，红移量会被高估，更高阶的模（四极、八极）也完全没算进去。图 6 里 $a=60$ nm 那个 415 nm 只能当趋势看，定量必须解完整的 Mie 级数。
+>
+> 另外，图 6 用的 Drude 拟合**不含带间跃迁**，$\mathrm{Im}\,\varepsilon$ 偏小，所以峰值随尺寸掉得比真实银更陡。真实银在 320–400 nm 有带间吸收，线宽主要由它决定。
+
+课件用两句话概括了整个 §5.3 的逻辑：**两个区间要分开处理**——大颗粒（准静态因相位变化而失效，靠推迟效应修正）与极小颗粒（$a<10$ nm，尺寸小于电子平均自由程，靠阻尼修正）。前者是 (9.3)，后者是 (7.4)。
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/slide_two_regimes.jpg" alt="课件原片：§2.4 两个区间" />
+</div>
+
+*课件原片：明确提出两个区间——"大颗粒（推迟效应）"与"$a<10$ nm 的极小颗粒（尺寸小于电子平均自由程）"。这一节的标题就叫 Beyond the Quasi-static Approximation **and plasmon lifetime**，后半句指的是小颗粒的寿命被表面散射砍短*
 
 ### 9.3 核壳与介质孔
 
@@ -709,7 +878,36 @@ $L_z=1/3$ 时退回 (5.5)。
 | 金属里的介质孔 | 由孔的形状决定 | 与实心球互补，可做 EOT |
 | 二聚体/阵列 | 由间隙决定 | 间隙模红移，间隙里场最强（SERS 热点） |
 
-纳米壳的调谐能力来自**等离激元杂化**：球的空腔模与球的实心模耦合，分裂成能量不同的成键/反键两支，壳越薄耦合越强、红移越多。这是金纳米壳能做“一颗颗粒覆盖 600–1200 nm”的原因。
+**同心核壳的精确解。** 把同样的边界条件在两层界面上各用一次（四个待定系数、四个方程），得到（Bohren & Huffman 1983）
+
+$$
+\alpha=4\pi a_2^{3}\,
+\frac{(\varepsilon_2-\varepsilon_m)(\varepsilon_1+2\varepsilon_2)+f(\varepsilon_1-\varepsilon_2)(\varepsilon_m+2\varepsilon_2)}
+{(\varepsilon_2+2\varepsilon_m)(\varepsilon_1+2\varepsilon_2)+f(2\varepsilon_2-2\varepsilon_m)(\varepsilon_1-\varepsilon_2)},
+\qquad f=\frac{a_1^{3}}{a_2^{3}} ,
+\tag{9.5}
+$$
+
+$a_1$、$a_2$ 是核与外壳的半径，$\varepsilon_1$、$\varepsilon_2$ 是核与壳的介电函数，$f$ 是核占总体积的分数。
+
+**两个极限可以自己验**：
+
+- $f=0$（没有核）：分子分母同除以 $(\varepsilon_1+2\varepsilon_2)$，退回实心球 (4.3)；
+- $f\to1$（壳厚趋于零）：分子分母各自化到 $3\varepsilon_2(\varepsilon_1-\varepsilon_m)$ 与 $3\varepsilon_2(\varepsilon_1+2\varepsilon_m)$，α 变成**核材料**的极化率、半径取 $a_2$。壳薄到极限就不再是壳了，符合直觉。
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/fig08_shell.png" alt="图8 核壳结构" />
+</div>
+
+*图 8（重绘）**(a)** 银壳（$\varepsilon_2$）包二氧化硅核（$\varepsilon_1=2.1$），外壳半径固定 25 nm：壳从 8 nm 减到 1 nm，共振从 404 nm 一路红到 1061 nm，同时峰值下降；(b) 用一个几何参数 $f$ 就能扫过整个可见—近红外*
+
+<div style="text-align: center;">
+  <img src="/assets/posts_figs/course-LSP-localized-plasmon/slide_core_shell.jpg" alt="课件原片：核壳的极化率" />
+</div>
+
+*课件原片：式 (5.18) 的原始形式，$f=a_1^{3}/a_2^{3}$ 就是上式里的体积分数*
+
+**为什么能这么调**：壳越薄，腔里的场越被压到核与壳的界面上，等效的恢复力越弱，共振越低。用等离激元杂化的语言说，就是空腔模与实心模耦合得越强、成键支被推得越低。这是金纳米壳能"一颗颗粒覆盖 600–1200 nm"的原因，也是它比金棒更适合体内光热治疗的地方——同样的吸收峰，尺寸可以做得更小。
 
 ---
 
@@ -767,10 +965,13 @@ $$
 | 8 | $\mathrm{Re}\,\varepsilon=-2\varepsilon_m$ | **Fröhlich 条件** | — | (5.8) |
 | 9 | $\omega_0=\omega_p/\sqrt{1+2\varepsilon_m}$ | 共振频率 | — | §5.2 |
 | 10 | $\mathbf{E}_{\mathrm{in}}=\frac{3\varepsilon_m}{\varepsilon+2\varepsilon_m}\mathbf{E}_0$ | 内场增强 | — | §5.2 |
-| 11 | $C_{\mathrm{abs}}=k\,\mathrm{Im}\,\alpha$ | 吸收截面 | — | §5.3 |
-| 12 | $C_{\mathrm{sca}}=\frac{k^4}{6\pi}\lvert\alpha\rvert^2$ | 散射截面 | — | §5.3 |
+| 11 | $C_{\mathrm{sca}}=\frac{k^{4}}{6\pi}\lvert\alpha\rvert^{2}=\frac{8\pi}{3}k^{4}a^{6}\left\lvert\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m}\right\rvert^{2}$ | 散射截面 | — | (5.13a) |
+| 12 | $C_{\mathrm{abs}}=4\pi ka^{3}\,\mathrm{Im}\!\left[\frac{\varepsilon-\varepsilon_m}{\varepsilon+2\varepsilon_m}\right]$ | 吸收截面 | — | (5.13b) |
 | 13 | $\mathrm{Re}\,\varepsilon=\varepsilon_m(1-1/L_z)$ | 椭球共振 | — | §5.3 |
 | 14 | $\gamma(a)=\gamma_{\text{bulk}}+Av_F/a$ | 尺寸效应 | — | §5.3 |
+| 15 | $\mathbf{H},\mathbf{E}$ 完整偶极场（含三区） | 辐射场 | — | (5.10)–(5.12) |
+| 16 | $\alpha$ 核壳表达式，$f=a_1^{3}/a_2^{3}$ | 核壳极化率 | — | (5.18) |
+| 17 | $\alpha$ 含推迟修正的幂级数 | 尺寸修正 | — | (5.19) |
 
 ### 三个“一眼看出”的判据
 
@@ -867,6 +1068,22 @@ $N$ 是退极化因子。圆柱（二维截面为圆）$N=1/2$，给出 $\vareps
 
 所以存在一个**最佳尺寸**：太大则辐射阻尼和高阶模占主导，太小则表面散射吃掉共振。银球的最佳区间大致是 20–60 nm，具体取决于激发波长和用途（SERS 偏大、传感偏小）。
 
+**9. 为什么 40 nm 以下的颗粒要用光热而不是暗场散射来成像？**
+
+**答**：因为两个截面对尺寸的标度差了三倍，$C_{\mathrm{abs}}\propto a^{3}$ 而 $C_{\mathrm{sca}}\propto a^{6}$。
+
+在各自的共振峰上比较，交越在 $a\approx42$ nm（图 7b）。小于这个尺寸，散射几乎为零，暗场里根本看不见；但吸收仍然可观，而且全部转成热。光热信号正比于吸收，所以能在"散射背景"里把小球挑出来。
+
+反过来的情况更常见：背景里只要有一个更大的散射体，$C_{\mathrm{sca}}\propto a^{6}$ 会让它亮好几个数量级，小颗粒彻底被淹没。这也是为什么"在细胞里找 20 nm 的金颗粒"至今仍是技术活。
+
+**10. 核壳公式 (9.5) 在 $f=0$ 和 $f\to1$ 时分别退回什么？为什么薄壳不能当"接近实心球"处理？**
+
+**答**：$f=0$（没有核）退回实心球的 (4.3)；$f\to1$（壳厚趋于零）时，分子分母各自化到 $3\varepsilon_2(\varepsilon_1-\varepsilon_m)$ 与 $3\varepsilon_2(\varepsilon_1+2\varepsilon_m)$，α 变成**核材料**的极化率、半径取 $a_2$。两个极限都能直接验算。
+
+但薄壳不能当小扰动看。图 8(a) 里外壳 25 nm、壳厚 1 nm 时共振在 1061 nm，而实心银球在 322 nm——**只差 1 nm 的银，共振差了 700 nm**。
+
+原因是薄壳支持的是一支**独立的杂化模式**（成键支），频率被推到长波，强度随壳变薄而趋于零也不退回短波。$f\to1$ 时 α 之所以退化到核材料，是因为这支模式的权重已经小到可以忽略，而不是因为它"变成了"实心球。所以薄壳必须用 (9.5) 严格算，做微扰展开会彻底失败。
+
 ---
 
 ## 附录：教材对应章节
@@ -875,8 +1092,9 @@ $N$ 是退极化因子。圆柱（二维截面为圆）$N=1/2$，给出 $\vareps
 | --- | --- | --- |
 | Ch.5 §5.1 | LSP 的定义、与 SPP 的区别 | §1 |
 | **Ch.5 §5.2** | **准静态近似、拉普拉斯方程、极化率、Fröhlich 条件** | **§2–§7** |
-| Ch.5 §5.3 | 超越准静态：形状因子、尺寸效应、Mie 理论 | §7.3、§9 |
-| Ch.8–10 | SERS、折射率传感、等离激元应用 | §8、§10 |
+| Ch.5 §5.3 | 推迟效应、偶极辐射、截面、尺寸与核壳修正 | §8.3–§9.3 |
+| Ch.5（Mie 部分） | 多极展开、矢量谐波、准静态作为首项 | 配套笔记《米氏理论》 |
+| Ch.8–10 | SERS、折射率传感、等离激元应用 | §10 |
 | Ch.2 §2.2 | 平面 SPP 的色散（对照） | 配套笔记《SPPs》§5 |
 
 ---
